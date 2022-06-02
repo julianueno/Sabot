@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "930512440608",
+    "project_id": "sabot-343da",
+    "storage_bucket": "sabot-343da.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930512440608:android:3176c33129cf5abd839b45",
+        "android_client_info": {
+          "package_name": "com.sabot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930512440608-nscb946mae98mr1sr55l6qlb8jfcqg87.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sabot",
+            "certificate_hash": "c60f2fede952fdc96589023596207150aa18ba29"
+          }
+        },
+        {
+          "client_id": "930512440608-8pgvbi2dbhl5rh14jc689be0lfthi37k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAobJUw9DX6T1NM296JZ-jA_CX2vvnQPEU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930512440608-8pgvbi2dbhl5rh14jc689be0lfthi37k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

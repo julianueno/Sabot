@@ -6,10 +6,13 @@
  * @flow strict-local
  */
 
+ import 'react-native-gesture-handler';
+
  import React, {useEffect} from 'react';
  import {StatusBar, PermissionsAndroid, Platform} from 'react-native';
  import Geolocation from '@react-native-community/geolocation';
- import HomeScreen from './src/screens/HomeScreen';
+
+ import Router from './src/navigation/root';
  
  navigator.geolocation = require('@react-native-community/geolocation');
  
@@ -50,7 +53,7 @@
    return (
      <>
      <StatusBar barStyle="dark-content" />
-     <HomeScreen />
+     <Router />
      </>
    );
  };

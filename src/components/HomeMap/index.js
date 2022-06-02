@@ -7,6 +7,8 @@ import drivers from '../../assets/data/drivers';
 
 import styles from './styles.js';
 
+import {addLocation, getLocation} from '../../api/DriversApi';
+
 const HomeMap = (props) => {
 
     const getImage = (type) => {
