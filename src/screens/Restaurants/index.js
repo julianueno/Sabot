@@ -10,10 +10,10 @@ const Restaurants = (props) => {
     return (
         <View>
             <Logo/>
+            <NavBar/>
             <View style={{height: Dimensions.get('window').height -280}}>
             <RestaurantMap />
             </View>
-            <NavBar/>
         </View>
 
     );
