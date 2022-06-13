@@ -8,7 +8,7 @@ import {useNavigation} from '@react-navigation/native'
 
 import styles from './styles.js';
 
-const NavBar = (props) => {
+const Forms = (props) => {
     const navigation = useNavigation();
 
     const goToHome = () =>{
@@ -24,16 +24,14 @@ const NavBar = (props) => {
     return (
         <View style={styles.container}>
             <Pressable onPress={goToHome} style={styles.button}>
-                <Text style={styles.title}> OnRoad</Text>
+                <Text style={styles.text}> Report Raid</Text>
             </Pressable>
             <Pressable onPress={goToRestaurants} style={styles.button}>
-                <Text style={styles.title}> Restaurants</Text>
+                <Text style={styles.text}> Report Accident</Text>
             </Pressable>
-            <Pressable onPress={goToMyPay} style={styles.button}>
-                <Text style={styles.title}> MyPay</Text>
-            </Pressable>
+
         </View>
     );
 };
 
-export default NavBar;
+export default Forms;

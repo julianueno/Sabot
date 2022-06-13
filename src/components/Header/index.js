@@ -7,15 +7,16 @@ import {View, Text, Image} from "react-native";
 
 import styles from './styles.js';
 
-const Logo = (props) => {
+const Header = (props) => {
     return (
             <View style={styles.inputBox}> 
             <Image
-                style={{width: 140, height: 80, resizeMode:'contain'}}
+                style={{width: 110, height: 80, resizeMode:'contain'}}
                 source={require('../../assets/images/logo.png')}
             />
-        </View>
+            </View>
     );
 };
 
-export default Logo;
+
+export default Header;

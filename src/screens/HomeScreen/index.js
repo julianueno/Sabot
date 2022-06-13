@@ -1,22 +1,38 @@
 import React from "react";
-import {View, Dimensions} from "react-native";
+import {View, Dimensions, Image, Text, StyleSheet} from "react-native";
 
 import HomeMap from '../../components/HomeMap';
 import Message from '../../components/Message';
-import Logo from '../../components/Logo';
+import Header from '../../components/Header';
+import Companies from '../../components/Companies';
 import NavBar from '../../components/NavBar';
+import Forms from '../../components/Forms';
 
 const HomeScreen = (props) => {
     return (
         <View>
-            <Logo/>
-            <View style={{height: Dimensions.get('window').height -200}}>
+            <Header/>
+            <Companies/>
             <HomeMap />
-            </View>
             <NavBar/>
-            {/*<Message/>*/}
         </View>
     );
 };
+
+
+const styles = StyleSheet.create ({
+title: {
+    width: 400,
+    height: 20,
+    color: 'black',
+    fontSize: 15,
+    marginTop: 10,
+    fontWeight: '600',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    right:5
+}
+
+});
 
 export default HomeScreen;
