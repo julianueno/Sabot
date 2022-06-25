@@ -1,16 +1,27 @@
-import React, {UseState} from "react";
-import {View, Image, Text, Pressable, Dimensions, TouchableOpacity} from "react-native";
+import React, {UseState, useEffect, useRef} from "react";
+import {View, Image, Text, Pressable, Dimensions, TouchableOpacity, Alert} from "react-native";
 
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import GeoLocation from "react-native-geolocation-service";
+import {useNavigation} from '@react-navigation/native';
+
+import {hasPermission} from '../../hooks/LocationPermission';
+import Message from '../../components/Message';
 
 import drivers from '../../assets/data/drivers';
-import raids from '../../assets/data/raids';
-import accidents from '../../assets/data/accidents';
+import RaidsData from '../../assets/data/raids';
+import AccidentsData from '../../assets/data/accidents';
 
 import styles from './styles.js';
 
 const HomeMap = (props) => {
- 
+
+  // Ref for interval 
+  const interval = useRef(null);
+
+  // Initialize navigation hook
+  const navigation = useNavigation();
+
     const getImage = (type) => {
         if (type === 'moto') {
           return require('../../assets/images/moto.png');
@@ -29,7 +40,6 @@ const HomeMap = (props) => {
         }
         return require('../../assets/images/raid.png');
       };
-
       
       const showDrivers = drivers.map ((driver:{...}) => (
         <Marker
@@ -42,29 +52,6 @@ const HomeMap = (props) => {
              </Marker>
          ));
       
-      const showAccidents = accidents.map ((accident:{...}) => (
-        <Marker
-         key={accident.id}
-         coordinate={{ latitude : accident.latitude, longitude : accident.longitude }}>
-              <Image
-                  style={{width: 35, height: 35, resizeMode:'contain'}}
-                  source={getImage(accident.type)}
-                  />
-             </Marker>
-     
-         ));
-      
-         const showRaids = raids.map ((raid:{...}) => (
-          <Marker
-           key={raid.id}
-           coordinate={{ latitude : raid.latitude, longitude : raid.longitude }}>
-                <Image
-                    style={{width: 35, height: 35, resizeMode:'contain'}}
-                    source={getImage(raid.type)}
-                    />
-               </Marker>
-       
-           ));
 
            const [currentCategory, setCurrentCategory]= React.useState({});
            const onCategoryClick = category => {
@@ -73,10 +60,10 @@ const HomeMap = (props) => {
           const getMarkers = () => {
             switch (currentCategory) {
                 case 'Other Riders': return showDrivers;
-                case 'Raids': return showRaids;
-                case 'Accidents': return showAccidents;
-                case 'All': return [...showDrivers, ...showRaids, ...showAccidents];
-                default: return [...showDrivers, ...showRaids, ...showAccidents];
+                case 'Raids': return <RaidsData/>;
+                case 'Accidents': return  <AccidentsData/>;
+                case 'All': return [<AccidentsData/>, <RaidsData/>, showDrivers];
+                default: return [<AccidentsData/>, <RaidsData/>, showDrivers];
             }
           };
 
@@ -99,7 +86,7 @@ const HomeMap = (props) => {
                 style={{
                   color: props.currentCategory === props.text ? "white" : "black",
                   fontFamily: "Lexend-Regular",
-                  fontWeight: "600",
+                  fontWeight: "300",
                   fontSize: 12,
                   lineHeight: 16,
                   height: 16,
@@ -109,26 +96,94 @@ const HomeMap = (props) => {
               </Text>
             </TouchableOpacity>
           );
+        
+          // 4. Keeping track of position (lat and long)
+          const [position, setPosition] = React.useState(null);
 
+          // function to get current location of user
+          const getLocation = async () => {
+           const locationPermission = await hasPermission();
+          if (!locationPermission) return;
+
+          GeoLocation.getCurrentPosition(
+              position => {
+                setPosition(position);
+              },
+              error => {
+                setPosition(null)
+              },
+
+              {
+                accuracy: {
+                  android: 'high',
+                },
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 10000,
+                distanceFilter: 0,
+                forceRequestLocation: true,
+                forceLocationManager: false,
+                showLocationDialog: true,
+              },
+            );
+          };
+
+          // useEffect triggered whenever the screen is in focus
+          useEffect(() => {
+            navigation.addListener('focus', event => {
+              interval.current = setInterval(() => getLocation(), 30000);
+              getLocation();
+            });
+
+            return () => clearInterval(interval.current);
+          }, [navigation]);
+
+          // useEffect triggered whenever the screen is out of focus
+          useEffect(() => {
+            navigation.addListener('blur', event => {
+              clearInterval(interval.current);
+              interval.current = null;
+            });
+          }, [navigation]);
+   
+          // alert for Option of accident or Raid
+          const FormAlert = () =>
+
+          Alert.alert(
+            "Report",
+            "What would you like to Report?",
+            [
+              {
+                text: "Cancel",
+                onPress: () => navigation.navigate('Home'),
+              },
+              { text: "Raid", onPress: () => navigation.navigate('ReportRaid')},
+              {
+                text: "Accident",
+                onPress: () =>  navigation.navigate('ReportAccident'),
+              },
+            ]
+          );
+        
         return (
-          <View style={{height: Dimensions.get('window').height -120}}>
+          <View style={{height: Dimensions.get('window').height -180}}>
             <MapView
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
                 showsUserLocation={true}
-                region={{
-                latitude: 51.476926,
-                longitude: -0.0334287,
+              region={{
+                latitude: position?.coords.latitude || 51.475088,
+                longitude: position?.coords.longitude ||-0.039669,
                 latitudeDelta: 0.015,
-                longitudeDelta: 0.015,
-            }}
+                longitudeDelta: 0.015, 
+            }}                
             >
             {getMarkers()}  
             </MapView>
             <View style={styles.filtercontainer}>
             <View style={{ flexDirection: "row", alignSelf: "center" }}>
               <HeaderButton
-                text="All"
+                text={"All"}
                 btnColor="#00CCFF"
                 textColor="white"
                 currentCategory={currentCategory}
@@ -151,25 +206,11 @@ const HomeMap = (props) => {
                   textColor="black"
                   currentCategory={currentCategory}
                 onCategoryClick={props.category}/>
-    </View>
-            {/*
-            <Pressable   
-            onPress={() => onCategoryClick('All')} style={styles.buttonAll}>
-            <Text style={styles.title}> All</Text>
-            </Pressable>
-            <Pressable  
-            onPress={() => onCategoryClick('justRaids')} style={styles.buttonRaids}>
-            <Text style={styles.title}> Raids</Text>
-            </Pressable>
-            <Pressable
-             onPress={() =>  onCategoryClick('justAccidents')} style={styles.buttonAccidents}>
-            <Text style={styles.title}> Accidents</Text>
-            </Pressable>
-            <Pressable 
-            onPress={() =>  onCategoryClick('justDrivers')} style={styles.buttonDrivers}>
-            <Text style={styles.title}> Other Riders</Text>
-          </Pressable> */}
             </View>
+            </View>
+            <Pressable onPress={FormAlert} style={styles.buttonForms}>
+                <Text style={styles.title}>Report</Text>
+            </Pressable>
             </View>
             
   )};

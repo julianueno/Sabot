@@ -2,35 +2,30 @@ import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create ({
     container : {
-        backgroundColor: '#1065e9',
-        padding: 15,
+        padding: 10,
         borderTopLeftRadius: 10,
         borderTopRightRadius:10,
-
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius:10,
+        backgroundColor: "white",
+        width: 250,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
     },
 
     title: {
-        color: 'white',
-        fontSize: 20,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-
-    text: {
-        color: '#bed9ff',
+        color: '#00CCFF',
         fontSize: 15,
-        marginBottom: 10,
-
+        fontWeight: '600',
+        marginBottom: 5,
+        fontFamily: "Lexend-Regular",
+        fontFamily: 'Lexend',
+        fontStyle: "normal",
+        fontWeight: "600",
     },
-    
-    learnMore:{
-        color: '#bed9ff',
-        fontSize: 15,
-        fontWeight: 'bold',
-        marginBottom: 10,
-
-    }
-
 });
 
 export default styles;
+ 

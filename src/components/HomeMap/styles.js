@@ -89,16 +89,28 @@ const styles = StyleSheet.create ({
         height: 26
       },
       title: {
-        color: '#1A1A1A',
         fontFamily: "Lexend-Regular",
         fontFamily: 'Lexend',
         fontStyle: "normal",
         fontWeight: "600",
-        fontSize: 12,
+        fontSize: 15,
         lineHeight: 16,
         height: 16,
-
-      }
+        color: "white",
+      },
+      buttonForms: {
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
+        position: "absolute",
+        width: 80,
+        height: 80,
+        backgroundColor: "#00CCFF",
+        top: "70%",
+        borderRadius: 80,
+      },
 });
 
 export default styles;
+ 

@@ -1,51 +1,71 @@
-import React, {Component} from "react";
-import {View, Dimensions, Text, TextInput, Image} from "react-native";
+// SignUp.js
+import React from 'react'
+import {  View,  Button,  TextInput} from 'react-native'
+import styles from './styles.js';
 
-import HomeMap from '../../components/HomeMap';
-import Header from '../../components/Header';
-import NavBar from '../../components/NavBar';
-import Companies from '../../components/Companies';
+import auth from '@react-native-firebase/auth';
 
-import firestore from "@react-native-firebase/firestore"
-
-class MyPay extends Component {
-    state = {
-        users: []
-        }
-    constructor (props) {
-        super (props);
-        this.subscriber = 
-        firestore()
-        .collection("users")
-        .onSnapshot(docs => {
-            let users = []
-            docs.forEach(doc => {
-                users.push(doc.data())
-            })
-            this.setState ({users})
-        })
-    }
-
-    render () {
-    return(
-        <View>
-            <Header/>
-            <Companies/>
-            <NavBar/>
-            {/*{this.state.users.map((user,index) => 
-            <View key= {index}><Text> {user.name} </Text>
-            </View>)}*/}
-            <Image
-                source={require('../../assets/images/period.png')}
-                style= {{width: 280, height: 100, right: -50, resizeMode:'cover'}}
-            /> 
-            {/*<Image
-                source={require('../../assets/images/mypay.png')}
-                style= {{width: 300, height: 400, right: -50, marginTop: 10, resizeMode:'cover'}}
-            /> */}               
-        </View>
-        );
-    }
+const auth = getAuth();
+class MyPay extends React.Component {
+  state = {
+    username: '', password: '', email: ''
+  }
+  onChangeText = (key, val) => {
+    this.setState({ [key]: val })
+  }
+  signUp = async () => {
+    const { email, password } = this.state;
+    auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log('User account created & signed in!');
+    })
+    .catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+  
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+  
+      console.error(error);
+    });
+  }
+ 
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          style={styles.input}
+          placeholder='Username'
+          autoCapitalize="none"
+          placeholderTextColor='white'
+          onChangeText={val => this.onChangeText('username', val)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder='Password'
+          secureTextEntry={true}
+          autoCapitalize="none"
+          placeholderTextColor='white'
+          onChangeText={val => this.onChangeText('password', val)}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder='Email'
+          autoCapitalize="none"
+          placeholderTextColor='white'
+          onChangeText={val => this.onChangeText('email', val)}
+        />
+        <Button
+          title='Sign Up'
+          onPress={this.signUp}
+        />
+      </View>
+    )
+  }
 }
 
-export default MyPay;
+export default MyPay; 
+

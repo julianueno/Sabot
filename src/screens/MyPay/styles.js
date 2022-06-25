@@ -1,17 +1,21 @@
 import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create ({
-button: {
-    backgroundColor: '#ff6347',
-    width: '30%',
-    height: 40,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    textAlign: 'center',
-    textAlignVertical: 'center'
+  input: {
+    width: 350,
+    height: 55,
+    backgroundColor: '#42A5F5',
+    margin: 10,
+    padding: 8,
+    color: 'white',
+    borderRadius: 14,
+    fontSize: 18,
+    fontWeight: '500',
   },
-});
 
-export default styles;
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  }
+});
