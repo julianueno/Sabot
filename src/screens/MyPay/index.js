@@ -1,39 +1,51 @@
 // SignUp.js
 import React from 'react'
-import {  View,  Button,  TextInput} from 'react-native'
+import {  View,  Button, Text,  TextInput} from 'react-native'
 import styles from './styles.js';
 
 import auth from '@react-native-firebase/auth';
+import createUserDocument from '../../authentication'
+import firestore from "@react-native-firebase/firestore"
 
-const auth = getAuth();
 class MyPay extends React.Component {
   state = {
     username: '', password: '', email: ''
-  }
+  }  
   onChangeText = (key, val) => {
     this.setState({ [key]: val })
   }
-  signUp = async () => {
-    const { email, password } = this.state;
-    auth()
-    .createUserWithEmailAndPassword(email, password)
-    .then(() => {
-      console.log('User account created & signed in!');
-    })
-    .catch(error => {
-      if (error.code === 'auth/email-already-in-use') {
-        console.log('That email address is already in use!');
-      }
-  
-      if (error.code === 'auth/invalid-email') {
-        console.log('That email address is invalid!');
-      }
-  
-      console.error(error);
-    });
-  }
- 
+
+  addUser = async (props) => {
+    const { email, password, username } = this.state;
+      firestore().collection('users').add({
+        username,
+        email,
+        user,
+      })
+    }    
+
+  signUp = async (e) => {
+        e.preventDefault();
+        const { email, password, username } = this.state;
+        try {
+          const { user } = await auth().createUserWithEmailAndPassword(
+            email,
+            password
+          )
+          .then (
+        firestore().collection ('users').add({
+          username,
+          email,
+        })
+        )}
+        catch (error) {
+          console.log('error', error);
+        }
+        this.setState({ username: '', email: '', password: '' });
+      };
+
   render() {
+    const { username, email, password } = this.state;
     return (
       <View style={styles.container}>
         <TextInput
@@ -66,6 +78,5 @@ class MyPay extends React.Component {
     )
   }
 }
-
 export default MyPay; 
-
+ 

@@ -110,6 +110,20 @@ const styles = StyleSheet.create ({
         top: "70%",
         borderRadius: 80,
       },
+      containermessage : {
+        padding: 10,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius:10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius:10,
+        backgroundColor: "white",
+        width: 250,
+        height: 50,
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        alignSelf: "center",
+    },
 });
 
 export default styles;

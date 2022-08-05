@@ -4,7 +4,7 @@ import firestore from "@react-native-firebase/firestore"
 
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 
-class DriversData extends Component {
+class TripsData extends Component {
    
     state = {
         drivers: []
@@ -14,6 +14,9 @@ class DriversData extends Component {
         this.subscriber = 
         firestore()
         .collection("drivers")
+        .doc('LY4VCmgNdhHmXpTAoesn')
+        .collection('trips')
+        .orderBy ('createdAt')
         .onSnapshot(docs => {
             let drivers = []
             docs.forEach(doc => {

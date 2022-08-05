@@ -4,6 +4,8 @@ import {View, Image, Text, Pressable, Dimensions, TouchableOpacity, Alert} from 
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import GeoLocation from "react-native-geolocation-service";
 import {useNavigation} from '@react-navigation/native';
+import firestore from "@react-native-firebase/firestore"
+
 
 import {hasPermission} from '../../hooks/LocationPermission';
 import Message from '../../components/Message';
@@ -52,7 +54,6 @@ const HomeMap = (props) => {
              </Marker>
          ));
       
-
            const [currentCategory, setCurrentCategory]= React.useState({});
            const onCategoryClick = category => {
              setCurrentCategory(category);
@@ -102,9 +103,8 @@ const HomeMap = (props) => {
 
           // function to get current location of user
           const getLocation = async () => {
-           const locationPermission = await hasPermission();
+          const locationPermission = await hasPermission();
           if (!locationPermission) return;
-
           GeoLocation.getCurrentPosition(
               position => {
                 setPosition(position);
@@ -112,7 +112,6 @@ const HomeMap = (props) => {
               error => {
                 setPosition(null)
               },
-
               {
                 accuracy: {
                   android: 'high',
@@ -126,17 +125,21 @@ const HomeMap = (props) => {
                 showLocationDialog: true,
               },
             );
-          };
+            };
 
           // useEffect triggered whenever the screen is in focus
+          //const [lat, setLat] = useState(null);
+          //const [oldLat, set] = useState(null);
+
           useEffect(() => {
             navigation.addListener('focus', event => {
               interval.current = setInterval(() => getLocation(), 30000);
               getLocation();
-            });
+            })
+            return () => clearInterval(interval.current)
+          }, [navigation]
+          );
 
-            return () => clearInterval(interval.current);
-          }, [navigation]);
 
           // useEffect triggered whenever the screen is out of focus
           useEffect(() => {
@@ -163,9 +166,20 @@ const HomeMap = (props) => {
                 onPress: () =>  navigation.navigate('ReportAccident'),
               },
             ]
-          );
+          );        
         
-        return (
+        //useEffect triggered to write location after position is initialized
+        useEffect(() =>  {
+          if (position!=null){
+            const lat = position.coords.latitude
+            const long = position.coords.longitude
+          firestore().collection('drivers').doc('LY4VCmgNdhHmXpTAoesn').collection('trips').add({
+            location: new firestore.GeoPoint(lat, long),
+            createdAt: firestore.FieldValue.serverTimestamp()
+          })};
+          }, [position]);       
+       
+          return (
           <View style={{height: Dimensions.get('window').height -180}}>
             <MapView
                 provider={PROVIDER_GOOGLE}
@@ -178,7 +192,7 @@ const HomeMap = (props) => {
                 longitudeDelta: 0.015, 
             }}                
             >
-            {getMarkers()}  
+            {getMarkers()}
             </MapView>
             <View style={styles.filtercontainer}>
             <View style={{ flexDirection: "row", alignSelf: "center" }}>
@@ -211,6 +225,9 @@ const HomeMap = (props) => {
             <Pressable onPress={FormAlert} style={styles.buttonForms}>
                 <Text style={styles.title}>Report</Text>
             </Pressable>
+            <Message>
+            <Text> "Key accident" </Text>
+            </Message>
             </View>
             
   )};

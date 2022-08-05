@@ -17,5 +17,33 @@ const styles = StyleSheet.create ({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
-  }
+  },
+  message : {
+    padding: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius:10,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius:10,
+    backgroundColor: "white",
+    width: 250,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
+},
+messcontainer : {
+  padding: 10,
+  borderTopLeftRadius: 10,
+  borderTopRightRadius:10,
+  borderBottomLeftRadius: 10,
+  borderBottomRightRadius:10,
+  backgroundColor: "white",
+  width: 250,
+  flexDirection: "row",
+  justifyContent: "center",
+  alignItems: "center",
+  alignSelf: "center",
+},
+
+
 });
