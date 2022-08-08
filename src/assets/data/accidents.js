@@ -28,13 +28,13 @@ class AccidentsData extends Component {
         <View>
         {this.state.accidents.map ((accident,index) => (
         <Marker
-         key={accident.id}
+         key= {accident.id}
          coordinate={{ latitude : accident.location.latitude, longitude : accident.location.longitude }}>
               <Image
                   style={{width: 35, height: 35, resizeMode:'contain'}}
                   source={require('../../assets/images/accident.png')}
                   />
-             </Marker>
+        </Marker>
         ))}
         </View>
     )}

@@ -1,19 +1,19 @@
-import React, {useState, useEffect} from 'react'
-import { Text, View, Button, TextInput, Image, SafeAreaView, TouchableOpacity, StatusBar, Alert } from "react-native";
-import { auth, signInWithEmailAndPassword }  from '@react-native-firebase/auth';
+import React, {UseState, useEffect} from 'react'
+import {  View,  Button, Text,  TextInput, Image, SafeAreaView} from 'react-native'
+import {auth, signInWithEmailAndPassword} from '@react-native-firebase/auth';
 import firestore from "@react-native-firebase/firestore"
 import Header from '../../components/Header';
-import styles from './styles.js';
+import {useNavigation} from '@react-navigation/native';
 
 
-export default function MyPay({ navigation }) {
-    
+export default function Login({ navigation }) {
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
   
     const onHandleLogin = () => {
       if (email !== "" && password !== "") {
-        auth().signInWithEmailAndPassword( auth, email, password)
+        signInWithEmailAndPassword(auth, email, password)
           .then(() => console.log("Login success"))
           .catch((err) => Alert.alert("Login error", err.message));
       }
@@ -21,6 +21,7 @@ export default function MyPay({ navigation }) {
     
     return (
       <View style={styles.container}>
+        <Image source={backImage} style={styles.backImage} />
         <View style={styles.whiteSheet} />
         <SafeAreaView style={styles.form}>
           <Text style={styles.title}>Log In</Text>
@@ -58,5 +59,3 @@ export default function MyPay({ navigation }) {
       </View>
     );
   }
- 
- 

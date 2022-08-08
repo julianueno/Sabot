@@ -90,9 +90,12 @@ const RaidMap = (props) => {
       const addRaid = async () => {
         const lat = pin.latitude
         const long = pin.longitude
-        firestore().collection('raids').add({
+        const docRef = await firestore().collection('raids').add({
           location: new firestore.GeoPoint(lat, long),
           timestamp: firestore.FieldValue.serverTimestamp()
+        })
+        firestore().collection('raids').doc(docRef.id).update({
+        id: docRef.id
         })
       }        
 

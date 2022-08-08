@@ -4,20 +4,34 @@ import firestore from "@react-native-firebase/firestore"
 
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
 
+
+const getImage = (type) => {
+    if (type === 'motouber') {
+        return require('../../assets/images/motouber.png');
+      }
+      if (type === 'carstuart') {
+        return require('../../assets/images/carstuart.png');
+      }
+      if (type === 'motodeliveroo') {
+        return require('../../assets/images/motodeliveroo.png');
+      }
+      if (type === 'bikedeliveroo') {
+        return require('../../assets/images/bikedeliveroo.png');
+      }
+    };  
+
 class TripsData extends Component {
    
     state = {
         drivers: []
         }
-    constructor (props) {
-        super (props);
-        this.subscriber = 
-        firestore()
-        .collection("drivers")
-        .doc('LY4VCmgNdhHmXpTAoesn')
-        .collection('trips')
-        .orderBy ('createdAt')
-        .onSnapshot(docs => {
+        constructor (props) {
+            super (props);
+            this.subscriber = 
+            firestore()
+            .collection("drivers")
+            .where('active',"==",true)
+            .onSnapshot(docs => {
             let drivers = []
             docs.forEach(doc => {
                 drivers.push(doc.data())
@@ -36,13 +50,14 @@ class TripsData extends Component {
          coordinate={{ latitude : driver.location.latitude, longitude : driver.location.longitude }}>
               <Image
                   style={{width: 35, height: 35, resizeMode:'contain'}}
-                  source={require('../../assets/images/accident.png')}
+                  source={getImage(driver.vehicle+driver.company)}
                   />
              </Marker>
-        ))}
+        )
+        )}
         </View>
     )}
 }
 
 
-export default DriversData;
+export default TripsData;

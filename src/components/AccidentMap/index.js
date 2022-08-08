@@ -89,9 +89,12 @@ const AccidentMap = (props) => {
     const addAccident = async () => {
         const lat = pin.latitude
         const long = pin.longitude
-        firestore().collection('accidents').add({
+        const docRef = await firestore().collection('accidents').add({
           location: new firestore.GeoPoint(lat, long),
           timestamp: firestore.FieldValue.serverTimestamp()
+        })
+        firestore().collection('accidents').doc(docRef.id).update({
+        id: docRef.id
         })
       }    
 

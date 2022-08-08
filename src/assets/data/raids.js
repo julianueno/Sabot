@@ -28,7 +28,7 @@ class RaidsData extends Component {
         <View>
         {this.state.raids.map ((raid,index) => (
         <Marker
-         key={raid.id}
+        key={raid.id}
          coordinate={{ latitude : raid.location.latitude, longitude : raid.location.longitude }}>
               <Image
                   style={{width: 35, height: 35, resizeMode:'contain'}}

@@ -1,49 +1,53 @@
 import {StyleSheet} from 'react-native';
 
-const styles = StyleSheet.create ({
-  input: {
-    width: 350,
-    height: 55,
-    backgroundColor: '#42A5F5',
-    margin: 10,
-    padding: 8,
-    color: 'white',
-    borderRadius: 14,
-    fontSize: 18,
-    fontWeight: '500',
-  },
-
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: "#fff",
   },
-  message : {
-    padding: 10,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius:10,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius:10,
-    backgroundColor: "white",
-    width: 250,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
+  title: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    color: "orange",
     alignSelf: "center",
-},
-messcontainer : {
-  padding: 10,
-  borderTopLeftRadius: 10,
-  borderTopRightRadius:10,
-  borderBottomLeftRadius: 10,
-  borderBottomRightRadius:10,
-  backgroundColor: "white",
-  width: 250,
-  flexDirection: "row",
-  justifyContent: "center",
-  alignItems: "center",
-  alignSelf: "center",
-},
-
-
+    paddingBottom: 24,
+  },
+  input: {
+    backgroundColor: "#F6F7FB",
+    height: 58,
+    marginBottom: 20,
+    fontSize: 16,
+    borderRadius: 10,
+    padding: 12,
+  },
+  backImage: {
+    width: "100%",
+    height: 340,
+    position: "absolute",
+    top: 0,
+    resizeMode: 'cover',
+  },
+  whiteSheet: {
+    width: '100%',
+    height: '75%',
+    position: "absolute",
+    bottom: 0,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 60,
+  },
+  form: {
+    flex: 1,
+    justifyContent: 'center',
+    marginHorizontal: 30,
+  },
+  button: {
+    backgroundColor: '#f57c00',
+    height: 58,
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 40,
+  },
 });
+
+export default styles; 
