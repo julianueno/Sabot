@@ -7,6 +7,8 @@
  */
 
  import 'react-native-gesture-handler';
+ import Providers from './src/navigation/Providers';
+
 
  import React, {useEffect} from 'react';
  import {StatusBar, PermissionsAndroid, Platform} from 'react-native';
@@ -53,7 +55,7 @@
    return (
      <>
      <StatusBar barStyle="dark-content" />
-     <Router />
+     <Providers />
      </>
    );
  };

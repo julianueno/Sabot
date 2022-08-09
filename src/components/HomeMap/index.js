@@ -4,8 +4,8 @@ import {View, Image, Text, Pressable, Dimensions, TouchableOpacity, Alert} from 
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import GeoLocation from "react-native-geolocation-service";
 import {useNavigation} from '@react-navigation/native';
-import firestore from "@react-native-firebase/firestore"
-
+import firestore from "@react-native-firebase/firestore";
+import auth from '@react-native-firebase/auth';
 
 import {hasPermission} from '../../hooks/LocationPermission';
 import Message from '../../components/Message';
@@ -18,6 +18,7 @@ import styles from './styles.js';
 
 const HomeMap = (props) => {
 
+  const currentDriverId = auth().currentUser.uid;
   // Ref for interval 
   const interval = useRef(null);
 
@@ -126,11 +127,11 @@ const HomeMap = (props) => {
     if (position!=null){
       const lat = position.coords.latitude
       const long = position.coords.longitude
-    firestore().collection('drivers').doc('vRp69Zj4vflrYTJrPBG2').collection('trips').add({
+    firestore().collection('drivers').doc(currentDriverId).collection('trips').add({
       location: new firestore.GeoPoint(lat, long),
       createdAt: firestore.FieldValue.serverTimestamp()
     })
-    firestore().collection('drivers').doc('vRp69Zj4vflrYTJrPBG2').update({
+    firestore().collection('drivers').doc(currentDriverId).update({
       location: new firestore.GeoPoint(lat, long),
       updatedAt: firestore.FieldValue.serverTimestamp()
     })
@@ -155,8 +156,7 @@ const HomeMap = (props) => {
         },
       ]
     );        
-        
-             
+                   
        
   return (
   <View style={{height: Dimensions.get('window').height -180}}>

@@ -20,6 +20,10 @@ const NavBar = (props) => {
     const goToMyPay = () =>{
         navigation.navigate('MyPay')
     }
+
+    const goToProfile = () =>{
+        navigation.navigate('Profile')
+    }
     
     return (
         <View style={styles.container}>
@@ -31,6 +35,9 @@ const NavBar = (props) => {
             </Pressable>
             <Pressable onPress={goToMyPay} style={styles.button}>
                 <Text style={styles.title}> MyPay</Text>
+            </Pressable>
+            <Pressable onPress={goToProfile} style={styles.button}>
+                <Text style={styles.title}> Profile </Text>
             </Pressable>
         </View>
     );

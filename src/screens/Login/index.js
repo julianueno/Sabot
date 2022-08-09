@@ -1,61 +1,103 @@
-import React, {UseState, useEffect} from 'react'
-import {  View,  Button, Text,  TextInput, Image, SafeAreaView} from 'react-native'
-import {auth, signInWithEmailAndPassword} from '@react-native-firebase/auth';
-import firestore from "@react-native-firebase/firestore"
-import Header from '../../components/Header';
-import {useNavigation} from '@react-navigation/native';
+import React, {useContext, useState} from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  Platform,
+  StyleSheet,
+  ScrollView
+} from 'react-native';
+import FormInput from '../../components/Forms/FormInput';
+import FormButton from '../../components/Forms/FormButton';
+import {AuthContext} from '../../navigation/AuthProvider';
 
+const Login = ({navigation}) => {
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
 
-export default function Login({ navigation }) {
+  const {login} = useContext(AuthContext);
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-  
-    const onHandleLogin = () => {
-      if (email !== "" && password !== "") {
-        signInWithEmailAndPassword(auth, email, password)
-          .then(() => console.log("Login success"))
-          .catch((err) => Alert.alert("Login error", err.message));
-      }
-    };
-    
-    return (
-      <View style={styles.container}>
-        <Image source={backImage} style={styles.backImage} />
-        <View style={styles.whiteSheet} />
-        <SafeAreaView style={styles.form}>
-          <Text style={styles.title}>Log In</Text>
-           <TextInput
-          style={styles.input}
-          placeholder="Enter email"
-          autoCapitalize="none"
-          keyboardType="email-address"
-          textContentType="emailAddress"
-          autoFocus={true}
-          value={email}
-          onChangeText={(text) => setEmail(text)}
-        />
-        <TextInput
-          style={styles.input}
-          placeholder="Enter password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          secureTextEntry={true}
-          textContentType="password"
-          value={password}
-          onChangeText={(text) => setPassword(text)}
-        />
-        <TouchableOpacity style={styles.button} onPress={onHandleLogin}>
-          <Text style={{fontWeight: 'bold', color: '#fff', fontSize: 18}}> Log In</Text>
-        </TouchableOpacity>
-        <View style={{marginTop: 20, flexDirection: 'row', alignItems: 'center', alignSelf: 'center'}}>
-          <Text style={{color: 'gray', fontWeight: '600', fontSize: 14}}>Don't have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Signup")}>
-            <Text style={{color: '#f57c00', fontWeight: '600', fontSize: 14}}> Sign Up</Text>
-          </TouchableOpacity>
-        </View>
-        </SafeAreaView>
-        <StatusBar barStyle="light-content" />
-      </View>
-    );
-  }
+  return (
+    <ScrollView contentContainerStyle={styles.container}>
+      <Image
+        style={{width: 50, height: 50, resizeMode:'contain'}}
+        source={require('../../assets/images/logo.png')}
+      />
+      <Text style={styles.text}>Sabot App</Text>
+
+      <FormInput
+        labelValue={email}
+        onChangeText={(userEmail) => setEmail(userEmail)}
+        placeholderText="Email"
+        iconType="user"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoCorrect={false}
+      />
+
+      <FormInput
+        labelValue={password}
+        onChangeText={(userPassword) => setPassword(userPassword)}
+        placeholderText="Password"
+        iconType="lock"
+        secureTextEntry={true}
+      />
+
+      <FormButton
+        buttonTitle="Sign In"
+        onPress={() => login(email, password)}
+      />
+
+      <TouchableOpacity style={styles.forgotButton} onPress={() => {}}>
+        <Text style={styles.navButtonText}>Forgot Password?</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={styles.forgotButton}
+        onPress={() => navigation.navigate('Signup')}>
+        <Text style={styles.navButtonText}>
+          Don't have an acount? Create here
+        </Text>
+      </TouchableOpacity>
+    </ScrollView>
+  );
+};
+
+export default Login;
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    paddingTop: 50
+  },
+  logo: {
+    height: 150,
+    width: 150,
+    resizeMode: 'cover',
+  },
+  text: {
+    fontSize: 28,
+    marginBottom: 10,
+    color: '#051d5f',
+    fontFamily: "Lexend-Regular",
+        fontFamily: 'Lexend',
+        fontStyle: "normal",
+        fontWeight: "600",
+        fontSize: 15,
+        lineHeight: 16,
+  },
+  navButton: {
+    marginTop: 15,
+  },
+  forgotButton: {
+    marginVertical: 35,
+  },
+  navButtonText: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#2e64e5',
+  },
+});

@@ -20,6 +20,10 @@ const Forms = (props) => {
     const goToMyPay = () =>{
         navigation.navigate('MyPay')
     }
+
+    const goToProfile = () =>{
+        navigation.navigate('Profile')
+    }
     
     return (
         <View style={styles.container}>

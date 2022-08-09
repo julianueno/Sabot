@@ -1,53 +1,72 @@
 import {StyleSheet} from 'react-native';
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create ({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
-  title: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: "orange",
-    alignSelf: "center",
-    paddingBottom: 24,
-  },
-  input: {
-    backgroundColor: "#F6F7FB",
-    height: 58,
+ 
+  inputView: {
+    backgroundColor: "#e6ecf2",
+    borderRadius: 30,
+    width: "70%",
+    height: 45,
     marginBottom: 20,
-    fontSize: 16,
-    borderRadius: 10,
-    padding: 12,
+    alignItems: "center",
   },
-  backImage: {
-    width: "100%",
-    height: 340,
+ 
+  TextInput: {
+    height: 50,
+    padding: 15,
+    fontFamily: "Lexend-Regular",
+    fontFamily: 'Lexend',
+    fontStyle: "normal",
+    fontWeight: "600",
+    fontSize: 15,
+    color: "white",
+  },
+
+  TextLogin: {
+    height: 50,
+    padding: 15,
+    fontFamily: "Lexend-Regular",
+    fontFamily: 'Lexend',
+    fontStyle: "normal",
+    fontWeight: "800",
+    fontSize: 15,
+    color: "white",
+  },
+ 
+  forgot_button: {
+    height: 30,
+    marginBottom: 30,
+  },
+ 
+  loginBtn: {
+    width: "40%",
+    borderRadius: 25,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 30,
+    backgroundColor: "#00CCFF",
+    marginBottom: 30,
+    alignItems: "center",
+  },
+  buttonForms: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    alignSelf: "center",
     position: "absolute",
-    top: 0,
-    resizeMode: 'cover',
-  },
-  whiteSheet: {
-    width: '100%',
-    height: '75%',
-    position: "absolute",
-    bottom: 0,
-    backgroundColor: '#fff',
-    borderTopLeftRadius: 60,
-  },
-  form: {
-    flex: 1,
-    justifyContent: 'center',
-    marginHorizontal: 30,
-  },
-  button: {
-    backgroundColor: '#f57c00',
-    height: 58,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 40,
+    width: 80,
+    height: 80,
+    backgroundColor: "#00CCFF",
+    top: 200,
+    borderRadius: 80,
   },
 });
 
-export default styles; 
+export default styles;

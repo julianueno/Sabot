@@ -6,6 +6,7 @@ import Restaurants from "../screens/Restaurants";
 import MyPay from "../screens/MyPay";
 import ReportAccident from "../screens/ReportAccident";
 import ReportRaid from "../screens/ReportRaid";
+import Profile from "../screens/Profile";
 
 import {createStackNavigator} from "@react-navigation/stack"
 
@@ -13,7 +14,6 @@ const Stack=createStackNavigator();
 
 const RootNavigator = (props) => {
   return (
-    <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown:false,
@@ -24,8 +24,8 @@ const RootNavigator = (props) => {
         <Stack.Screen name={"MyPay"} component={MyPay}/>
         <Stack.Screen name={"ReportAccident"} component={ReportAccident}/>
         <Stack.Screen name={"ReportRaid"} component={ReportRaid}/>
+        <Stack.Screen name={"Profile"} component={Profile}/>
       </Stack.Navigator>
-    </NavigationContainer>
   )
 }
 
