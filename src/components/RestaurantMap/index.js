@@ -2,12 +2,14 @@ import React from "react";
 import {View, Image, Text} from "react-native";
 
 import MapView, {PROVIDER_GOOGLE, Marker, Callout} from 'react-native-maps';
+import {windowHeight, windowWidth} from '../../utils/Dimensions';
 
 import styles from './styles.js';
 
 const RestaurantMap = (props) => {
 
         return (
+            <View style={{height: height: windowHeight/1.3}}>
             <MapView
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
@@ -24,7 +26,15 @@ const RestaurantMap = (props) => {
                          style={{width: 40, height: 40, resizeMode:'contain'}}
                          source={require('../../assets/images/mcdonalds.png')}
                          />
-                <Callout>
+                    </Marker>
+            </MapView>
+            </View>
+    );
+};
+
+export default RestaurantMap;
+
+                {/*<Callout>
                     <View style={styles.bubble}>
                     <Text>
                     <Image
@@ -43,11 +53,4 @@ const RestaurantMap = (props) => {
                     />
                     </Text>              
                     </View>
-                </Callout>
-
-                    </Marker>
-            </MapView>
-    );
-};
-
-export default RestaurantMap;
+            </Callout>*/}

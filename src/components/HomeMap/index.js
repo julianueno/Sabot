@@ -8,7 +8,8 @@ import firestore from "@react-native-firebase/firestore";
 import auth from '@react-native-firebase/auth';
 
 import {hasPermission} from '../../hooks/LocationPermission';
-import Message from '../../components/Message';
+import {windowHeight, windowWidth} from '../../utils/Dimensions';
+
 
 import TripsData from '../../assets/data/trips';
 import RaidsData from '../../assets/data/raids';
@@ -46,7 +47,7 @@ const HomeMap = (props) => {
   const HeaderButton = (props) => (
     <TouchableOpacity
       style={{
-        backgroundColor: props.currentCategory === props.text ? "#00CCFF" : "white",
+        backgroundColor: props.currentCategory === props.text ? "#fa706e" : "white",
         paddingVertical: 6,
         paddingHorizontal: 16,
         borderRadius: 30,
@@ -143,7 +144,7 @@ const HomeMap = (props) => {
 
   Alert.alert(
       "Report",
-      "What would you like to Report?",
+      "What would you like to Notify?",
       [
         {
           text: "Cancel",
@@ -159,7 +160,7 @@ const HomeMap = (props) => {
                    
        
   return (
-  <View style={{height: Dimensions.get('window').height -180}}>
+  <View style={{height: windowHeight/1.3}}>
     <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
@@ -177,7 +178,7 @@ const HomeMap = (props) => {
     <View style={{ flexDirection: "row", alignSelf: "center" }}>
       <HeaderButton
         text={"All"}
-        btnColor="#00CCFF"
+        btnColor="#fa706e"
         textColor="white"
         currentCategory={currentCategory}
         onCategoryClick={props.category}/>
@@ -202,7 +203,7 @@ const HomeMap = (props) => {
     </View>
     </View>
     <Pressable onPress={FormAlert} style={styles.buttonForms}>
-        <Text style={styles.title}>Report</Text>
+        <Text style={styles.title}>Notify</Text>
     </Pressable>
     </View>
             

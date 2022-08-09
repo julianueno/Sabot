@@ -1,27 +1,29 @@
 import {StyleSheet} from 'react-native';
+import {windowHeight, windowWidth} from '../../utils/Dimensions';
+
 
 const styles = StyleSheet.create ({
     container: {
-        backgroundColor: '#d1cbcb',
+        backgroundColor: 'white',
         display: "flex",
         flexDirection: "row",
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         alignItems: "center",
         position: "absolute",
-        width: 420,
-        height: 70,
+        width: windowWidth/ 1.1,
+        height: windowHeight / 12,
         padding: 5,
-        top: '90%', //for center align
-        alignSelf: 'center' //for align to right
+        top: windowHeight/1.15, //for center align
+        alignSelf: 'center', //for align to right
       },
       button: {
-        backgroundColor: '#d1cbcb',
+        backgroundColor: 'white',
         display: "flex",
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        width: 100,
-        height: 49,
+        width: windowWidth/ 4,
+        height: windowHeight / 12,
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
         borderBottomLeftRadius: 0,
@@ -30,11 +32,9 @@ const styles = StyleSheet.create ({
       },
       title: {
             color: '#1A1A1A',
-            fontFamily: "Lexend-Regular",
-            fontFamily: 'Lexend',
+            fontFamily: "Lexend",
             fontStyle: "normal",
-            fontWeight: "600",
-            fontSize: 13,
+            fontSize: 14,
             lineHeight: 16,
             height: 16,
 

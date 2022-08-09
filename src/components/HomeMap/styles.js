@@ -27,7 +27,7 @@ const styles = StyleSheet.create ({
         alignSelf: 'center' //for align to right
       }, 
       button: {
-        backgroundColor: '#00CCFF',
+        backgroundColor: '#fa706e',
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
@@ -42,7 +42,7 @@ const styles = StyleSheet.create ({
         height: 26
       }, 
       buttonRaids: {
-        backgroundColor: '#00CCFF',
+        backgroundColor: '#fa706e',
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
@@ -57,7 +57,7 @@ const styles = StyleSheet.create ({
         height: 26
       }, 
       buttonAccidents: {
-        backgroundColor: '#00CCFF',
+        backgroundColor: '#fa706e',
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
@@ -73,7 +73,7 @@ const styles = StyleSheet.create ({
         height: 26
       },
       buttonDrivers: {
-        backgroundColor: '#00CCFF',
+        backgroundColor: '#fa706e',
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
@@ -89,7 +89,6 @@ const styles = StyleSheet.create ({
         height: 26
       },
       title: {
-        fontFamily: "Lexend-Regular",
         fontFamily: 'Lexend',
         fontStyle: "normal",
         fontWeight: "600",
@@ -106,7 +105,7 @@ const styles = StyleSheet.create ({
         position: "absolute",
         width: 80,
         height: 80,
-        backgroundColor: "#00CCFF",
+        backgroundColor: "#fa706e",
         top: "70%",
         borderRadius: 80,
       },

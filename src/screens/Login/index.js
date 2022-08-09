@@ -21,10 +21,9 @@ const Login = ({navigation}) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Image
-        style={{width: 50, height: 50, resizeMode:'contain'}}
+        style={{width: 150, height: 150, resizeMode:'contain'}}
         source={require('../../assets/images/logo.png')}
       />
-      <Text style={styles.text}>Sabot App</Text>
 
       <FormInput
         labelValue={email}

@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
   input: {
     padding: 10,
     flex: 1,
-    fontFamily: "Lexend-Regular",
     fontFamily: 'Lexend',
     fontStyle: "normal",
     fontWeight: "600",

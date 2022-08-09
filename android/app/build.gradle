@@ -287,6 +287,8 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation project(':react-native-vector-icons')
 }
 
 if (isNewArchitectureEnabled()) {
@@ -319,3 +321,4 @@ def isNewArchitectureEnabled() {
 }
 
 apply plugin: 'com.google.gms.google-services' // <- Add this line
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

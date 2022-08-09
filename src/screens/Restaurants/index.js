@@ -11,12 +11,9 @@ const Restaurants = (props) => {
         <View>
             <Header/>
             <Companies/>
-            <View style={{height: Dimensions.get('window').height -280}}>
             <RestaurantMap />
             <NavBar/>
-            </View>
         </View>
-
     );
 };
 

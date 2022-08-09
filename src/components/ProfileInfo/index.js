@@ -1,58 +1,42 @@
-import React, {Component} from "react";
-import {View, Text, StyleSheet} from "react-native";
+import React, {Component, useContext} from "react";
+import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 import firestore from "@react-native-firebase/firestore";
 import auth from '@react-native-firebase/auth';
 
-class ProfileInfo extends Component {
+import {AuthContext} from '../../navigation/AuthProvider';
 
-    state = {
-        driver: 
-            name: ""
-            vehicle: ""
-            company: "" 
-            email: ""
+const ProfileInfo = (props) => {
+    const {user, logout} = useContext(AuthContext);
+
+    const driver = firestore().collection("drivers").doc(auth().currentUser.uid).get().then(documentSnapshot => {
+        console.log('User exists: ', documentSnapshot.exists);
+    
+        if (documentSnapshot.exists) {
+          console.log('User data: ', documentSnapshot.data());
         }
-    constructor (props) {
-        super (props);
-        this.getUser();
-        this.subscriber = 
-            firestore()
-  .collection('drivers')
-  .doc(auth().currentUser.uid)
-  .onSnapshot (docs => {
-        this.setState ({
-            driver:{
-            name: doc.data().name
-            company: doc.data().company
-            vehicle: doc.data().vehicle
-            }
-        })
-        });
-    }
-render () {
-    return (
-        <View>
-        <View style={styles.container}>
-            <Text style={styles.title}> Name: {this.state.driver.name}</Text>
-        </View>
-        <View style={styles.container}>
-            <Text style={styles.title}> Vehicle </Text>
-        </View>
-        <View style={styles.container}>
-            <Text style={styles.title}> Main Company </Text>
-        </View>
-        <View style={styles.container}>
-            <Text style={styles.title}> Email </Text>
-        </View>
+      });
 
-        <View style={styles.container}>
-            <Text style={styles.title}> Erase account </Text>
-        </View>
+    return (
+        <View style={styles.bigcontainer}>
+        <TouchableOpacity style={styles.container} onPress={() => {}}>
+        <Text style={styles.title}>Name: </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.container} onPress={() => {}}>
+        <Text style={styles.title}>Vehicle: </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.container} onPress={() => {}}>
+        <Text style={styles.title}>Company:</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.container} onPress={() => {}}>
+        <Text style={styles.title}>Email: </Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.logoutBut} onPress={() => logout()}>
+        <Text style={styles.title}>Logout </Text>
+        </TouchableOpacity>
         </View>
     );
 };
 
-}
 export default ProfileInfo;
 
 
@@ -63,18 +47,42 @@ const styles = StyleSheet.create ({
         borderTopRightRadius:10,
         borderBottomLeftRadius: 10,
         borderBottomRightRadius:10,
-        backgroundColor: "white",
         width: 250,
         flexDirection: "row",
-        justifyContent: "center",
         alignItems: "center",
         alignSelf: "center",
+        justifyContent: "center",
         bottom: 30,
+        borderWidth: 1,
+         
+    },
+    logoutBut : {
+        padding: 10,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius:10,
+        borderBottomLeftRadius: 10,
+        borderBottomRightRadius:10,
+        width: 100,
+        flexDirection: "row",
+        alignItems: "center",
+        alignSelf: "center",
+        justifyContent: "center",
+        bottom: 5,
+        borderWidth: 1,
+        backgroundColor: "#00CCFF"
          
     },
 
+    bigcontainer: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+        paddingTop: 50,
+        paddingBottom: 50,
+
+      },
+
     title: {
-        color: '#00CCFF',
         fontSize: 15,
         fontWeight: '600',
         marginBottom: 5,
