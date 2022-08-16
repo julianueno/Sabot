@@ -9,7 +9,7 @@ import styles from './styles.js';
 const RestaurantMap = (props) => {
 
         return (
-            <View style={{height: height: windowHeight/1.3}}>
+            <View style={{height: windowHeight/1.3}}>
             <MapView
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
