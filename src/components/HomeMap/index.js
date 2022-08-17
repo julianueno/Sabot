@@ -1,7 +1,8 @@
-import React, {UseState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useCallback} from "react";
 import {View, Image, Text, Pressable, Dimensions, TouchableOpacity, Alert} from "react-native";
 
-import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
+import MapView from "react-native-map-clustering";
 import GeoLocation from "react-native-geolocation-service";
 import {useNavigation} from '@react-navigation/native';
 import firestore from "@react-native-firebase/firestore";
@@ -10,8 +11,6 @@ import auth from '@react-native-firebase/auth';
 import {hasPermission} from '../../hooks/LocationPermission';
 import {windowHeight, windowWidth} from '../../utils/Dimensions';
 
-
-import TripsData from '../../assets/data/trips';
 import RaidsData from '../../assets/data/raids';
 import AccidentsData from '../../assets/data/accidents';
 
@@ -36,11 +35,11 @@ const HomeMap = (props) => {
   
   const getMarkers = () => {
     switch (currentCategory) {
-      case 'Other Riders': return <TripsData/>;
+      case 'Other Riders': return fetchTrips ();
       case 'Raids': return <RaidsData/>;
       case 'Accidents': return  <AccidentsData/>;
-      case 'All': return [<AccidentsData/>, <RaidsData/>, <TripsData/>];
-      default: return [<AccidentsData/>, <RaidsData/>,<TripsData/>];
+      case 'All': return [<AccidentsData/>, <RaidsData/>, fetchTrips () ];
+      default: return [<AccidentsData/>, <RaidsData/>, fetchTrips ()];
     }
   } ;
 
@@ -106,7 +105,7 @@ const HomeMap = (props) => {
   useEffect(() => {
     let isMounted = true;
     navigation.addListener('focus', event => {
-      interval.current = setInterval(() => getLocation(), 30000);
+      interval.current = setInterval(() => getLocation(), 60000);
       getLocation();
     })
     return () => clearInterval(interval.current)
@@ -120,6 +119,7 @@ const HomeMap = (props) => {
       clearInterval(interval.current);
       interval.current = null;
     });
+    return () => { isMounted = false }
   }, [navigation]);
 
   //useEffect triggered to write location after position is initialized
@@ -137,13 +137,14 @@ const HomeMap = (props) => {
       updatedAt: firestore.FieldValue.serverTimestamp()
     })
     };
-    }, [position]);  
+    return () => { isMounted = false }
+    }, [position]) 
 
   // alert for Option of accident or Raid
   const FormAlert = () =>
 
   Alert.alert(
-      "Report",
+      "Notify",
       "What would you like to Notify?",
       [
         {
@@ -157,22 +158,64 @@ const HomeMap = (props) => {
         },
       ]
     );        
-                   
-       
+  
+    function renderRandomMarkers(n) {
+      const { latitude, longitude, latitudeDelta, longitudeDelta } = initialRegion;
+      return new Array(n).fill().map((x, i) => (
+        <Marker
+          key={i}
+          coordinate={{
+            latitude: latitude + (Math.random() - 0.5) * latitudeDelta,
+            longitude: longitude + (Math.random() - 0.5) * longitudeDelta
+          }}
+        />
+      ));
+    }
+
+    const initialRegion= {
+        latitude: position?.coords.latitude || 51.455088,
+        longitude: position?.coords.longitude ||-0.039669,
+        latitudeDelta: 0.04,
+        longitudeDelta: 0.04,
+    };
+  
+    const [trips, setTrips] = useState ([]);
+
+    useEffect(() => {
+      const response= firestore()
+      .collection("drivers")
+      .where('active',"==",true)
+      .onSnapshot(docs => {
+      let trips = []
+      docs.forEach(doc => {
+        trips.push(doc.data())
+      })
+      setTrips (trips)
+      console.log (trips)
+      })
+    },[position])
+
+    const fetchTrips = () => {
+      return trips.map ((trip,index) => (
+        <Marker
+         key={trip.id}
+         coordinate={{ latitude : trip.location.latitude, longitude : trip.location.longitude }}>
+      </Marker>
+        ))
+    }
+    
+
   return (
   <View style={{height: windowHeight/1.3}}>
     <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         showsUserLocation={true}
-      region={{
-        latitude: position?.coords.latitude || 51.475088,
-        longitude: position?.coords.longitude ||-0.039669,
-        latitudeDelta: 0.015,
-        longitudeDelta: 0.015, 
-    }}                
-    >
+        radius="50"
+        clusterColor='#fa706e'
+      region={initialRegion}    >
     {getMarkers()}
+    
     </MapView>
     <View style={styles.filtercontainer}>
     <View style={{ flexDirection: "row", alignSelf: "center" }}>

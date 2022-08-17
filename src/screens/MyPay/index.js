@@ -1,83 +1,35 @@
+import React, {Component} from "react";
+import {View, Dimensions, Text, TextInput, Image} from "react-native";
 
-import React, {UseState, useEffect} from 'react'
-import {  View,  Button, Text,  TextInput} from 'react-native'
-import styles from './styles.js';
-
-import auth from '@react-native-firebase/auth';
-import firestore from "@react-native-firebase/firestore"
 import Header from '../../components/Header';
+import NavBar from '../../components/NavBar';
+import Companies from '../../components/Companies';
 
-class MyPay extends React.Component {
-  state = {
-    username: '', password: '', email: ''
-  }  
-  onChangeText = (key, val) => {
-    this.setState({ [key]: val })
-  }
+import firestore from "@react-native-firebase/firestore"
 
-  signUp = async (e) => {
-        e.preventDefault();
-        const { email, password, username } = this.state;
-        try {
-          const { user } = await auth().createUserWithEmailAndPassword(
-            email,
-            password
-          )
-        console.log(user.uid);
-        }
-        catch (error) {
-          console.log('error', error);
-        }
-        this.setState({ username: '', email: '', password: '' });
-        
-        useEffect (() =>  {
-          firestore().collection('users').set(user)
-         }, [user]) 
-      };
-       
+class MyPay extends Component {
 
-  render() {
-    const { username, email, password } = this.state;
-    return (
-      <View style= {styles.container}>
-        <Header/>
-        <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder='Username'
-          autoCapitalize="none"
-          placeholderTextColor="#003f5c"
-          onChangeText={val => this.onChangeText('username', val)}
-        />
+    render () {
+    return(
+        <View>
+            <Header/>
+            <Companies/>
+            <NavBar/>
+            {/*{this.state.users.map((user,index) => 
+            <View key= {index}><Text> {user.name} </Text>
+            </View>)}*/}
+            <Image
+                source={require('../../assets/images/period.png')}
+                style= {{width: 280, height: 100, right: -50, resizeMode:'cover'}}
+            /> 
+            <Image
+                source={require('../../assets/images/mypay.png')}
+                style= {{width: 300, height: 400, right: -50, marginTop: 10, resizeMode:'cover'}}
+            />               
         </View>
-
-        <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder='Password'
-          secureTextEntry={true}
-          autoCapitalize="none"
-          placeholderTextColor="#003f5c"
-          onChangeText={val => this.onChangeText('password', val)}
-        />
-        </View>
-
-        <View style={styles.inputView}>
-        <TextInput
-          style={styles.TextInput}
-          placeholder='Email'
-          autoCapitalize="none"
-          placeholderTextColor="#003f5c"
-          onChangeText={val => this.onChangeText('email', val)}
-        />
-        </View>
-        <Button
-          title='Sign Up'
-          onPress={this.signUp}
-        />
-      </View>
-
-    )
-  }
+        );
+    }
 }
-export default MyPay; 
+
+
+export default MyPay;

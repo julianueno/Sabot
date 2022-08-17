@@ -5,11 +5,6 @@ import {windowHeight, windowWidth} from '../../utils/Dimensions';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-
-/*import AntDesign from "react-native-vector-icons/AntDesign*/
-/*import MaterialIcons from "react-native-vector-icons/MaterialIcons*/
-/*import Entypo from "react-native-vector-icons/Entypo*/
-
 import styles from './styles.js';
 
 const NavBar = (props) => {
