@@ -41,6 +41,7 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
+android/app/src/main/AndroidManifest.xml
 
 # fastlane
 #
@@ -59,6 +60,3 @@ buck-out/
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
-src/test.js
-package-lock.json
-package-lock.json
