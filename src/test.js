@@ -34,3 +34,4 @@ function renderRandomMarkers(n) {
 
 
 export default MyPay;
+
