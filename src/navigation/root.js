@@ -5,8 +5,11 @@ import HomeScreen from "../screens/HomeScreen";
 import Restaurants from "../screens/Restaurants";
 import MyPay from "../screens/MyPay";
 import ReportAccident from "../screens/ReportAccident";
-import ReportRaid from "../screens/ReportRaid";
+import ReportControl from "../screens/ReportControl";
 import Profile from "../screens/Profile";
+import About from "../screens/About";
+import NewMyPay from "../screens/NewMyPay";
+
 
 import {createStackNavigator} from "@react-navigation/stack"
 
@@ -23,8 +26,11 @@ const RootNavigator = (props) => {
         <Stack.Screen name={"Restaurants"} component={Restaurants}/>
         <Stack.Screen name={"MyPay"} component={MyPay}/>
         <Stack.Screen name={"ReportAccident"} component={ReportAccident}/>
-        <Stack.Screen name={"ReportRaid"} component={ReportRaid}/>
+        <Stack.Screen name={"ReportControl"} component={ReportControl}/>
         <Stack.Screen name={"Profile"} component={Profile}/>
+        <Stack.Screen name={"About"} component={About}/>
+        <Stack.Screen name={"NewMyPay"} component={NewMyPay}/>
+
       </Stack.Navigator>
   )
 }

@@ -4,7 +4,6 @@ import {View, Image, Text, Pressable, Dimensions, Alert} from "react-native";
 import MapView, {PROVIDER_GOOGLE, Marker, Circle} from 'react-native-maps';
 import GeoLocation from "react-native-geolocation-service";
 import {useNavigation} from '@react-navigation/native';
-import Message from '../../components/Message';
 
 import {hasPermission} from '../../hooks/LocationPermission';
 import firestore from "@react-native-firebase/firestore"
@@ -129,11 +128,6 @@ const AccidentMap = (props) => {
     />
     </Marker> 
     </MapView>
-    <Message/>
-    {/*<View style={styles.message}>
-            <Text> Latitude: {pin.latitude} </Text>
-            <Text> Longitude: {pin.longitude} </Text>
-    </View>*/}
     <Pressable onPress={SubmitAlert} style={styles.buttonSubmit}>
                 <Text style={styles.title}>Submit</Text>
     </Pressable>

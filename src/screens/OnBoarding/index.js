@@ -59,18 +59,18 @@ const OnBoarding= ({navigation}) => {
         pages={[
           {
             backgroundColor: '#a6e4d0',
-            title: 'Connect to the World',
-            subtitle: 'A New Way To Connect With The World',
+            title: 'Sabot',
+            subtitle: 'Get the control of your data',
           },
           {
             backgroundColor: '#fdeb93',
-            title: 'Share Your Favorites',
-            subtitle: 'Share Your Thoughts With Similar Kind of People',
+            title: 'Sabot',
+            subtitle: 'Navigate the city with all information',
           },
           {
             backgroundColor: '#e9bcbe',
-            title: 'Become The Star',
-            subtitle: "Let The Spot Light Capture You",
+            title: 'Sabot',
+            subtitle: "Use algorithms to connect",
           },
         ]}
       />
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
       alignItems: 'center', 
       justifyContent: 'center'
     },
-  });
+});

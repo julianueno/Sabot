@@ -10,7 +10,7 @@ const styles = StyleSheet.create ({
         justifyContent: 'center',
         alignItems: "center",
         position: "absolute",
-        width: windowWidth/ 1.1,
+        width: windowWidth,
         height: windowHeight / 12,
         padding: 5,
         top: windowHeight/1.15, //for center align
@@ -22,7 +22,7 @@ const styles = StyleSheet.create ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        width: windowWidth/ 4,
+        width: windowWidth/ 3,
         height: windowHeight / 12,
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,

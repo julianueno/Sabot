@@ -4,14 +4,15 @@ import {hasPermission} from '../../Hooks/LocationPermission';
 
 import AccidentMap from '../../components/AccidentMap';
 import Header from '../../components/Header';
-import Companies from '../../components/Companies';
 import NavBar from '../../components/NavBar';
+import Space from '../../components/Space';
+import Message from '../../components/Message';
 
 const ReportAccident = (props) => {
     return (
         <View>
             <Header/>
-            <Companies/>
+            <Message/>
             <AccidentMap />
             <NavBar/>
         </View>

@@ -4,7 +4,6 @@ import {View, Image, Text, Pressable, Dimensions, Alert} from "react-native";
 import MapView, {PROVIDER_GOOGLE, Marker, Circle} from 'react-native-maps';
 import GeoLocation from "react-native-geolocation-service";
 import {useNavigation} from '@react-navigation/native';
-import Message from '../../components/Message';
 
 import firestore from "@react-native-firebase/firestore"
 
@@ -12,7 +11,7 @@ import {hasPermission} from '../../hooks/LocationPermission';
 
 import styles from './styles.js';
 
-const RaidMap = (props) => {
+const ControlMap = (props) => {
 
   // Ref for interval 
   const interval = useRef(null);
@@ -76,7 +75,7 @@ const RaidMap = (props) => {
 
     const SubmitAlert = () =>
     Alert.alert(
-        "Report Raid",
+        "Report Control",
         "Are you sure?",
         [
           {
@@ -126,11 +125,10 @@ const RaidMap = (props) => {
         }}>
     <Image
         style={{width: 45, height: 45, resizeMode:'contain'}}
-        source={require('../../assets/images/raid.png')}
+        source={require('../../assets/images/controls.png')}
     />
     </Marker> 
     </MapView>
-    <Message/>
     <Pressable onPress={SubmitAlert} style={styles.buttonSubmit}>
                 <Text style={styles.title}>Submit</Text>
     </Pressable>
@@ -138,4 +136,4 @@ const RaidMap = (props) => {
 );
 };
 
-export default RaidMap;
+export default ControlMap;

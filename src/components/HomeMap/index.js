@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useRef, useCallback} from "react";
 import {View, Image, Text, Pressable, Dimensions, TouchableOpacity, Alert} from "react-native";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import MapView from "react-native-map-clustering";
@@ -35,11 +36,11 @@ const HomeMap = (props) => {
   
   const getMarkers = () => {
     switch (currentCategory) {
-      case 'Other Riders': return fetchTrips ();
-      case 'Raids': return <RaidsData/>;
+      case 'Other Riders': return fetchLocation ();
+      case 'Controls': return <RaidsData/>;
       case 'Accidents': return  <AccidentsData/>;
-      case 'All': return [<AccidentsData/>, <RaidsData/>, fetchTrips () ];
-      default: return [<AccidentsData/>, <RaidsData/>, fetchTrips ()];
+      case 'All': return [<AccidentsData/>, <RaidsData/>, fetchLocation () ];
+      default: return [<AccidentsData/>, <RaidsData/>, fetchLocation ()];
     }
   } ;
 
@@ -128,15 +129,21 @@ const HomeMap = (props) => {
     if (position!=null){
       const lat = position.coords.latitude
       const long = position.coords.longitude
-    firestore().collection('drivers').doc(currentDriverId).collection('trips').add({
-      location: new firestore.GeoPoint(lat, long),
-      createdAt: firestore.FieldValue.serverTimestamp()
-    })
-    firestore().collection('drivers').doc(currentDriverId).update({
-      location: new firestore.GeoPoint(lat, long),
-      updatedAt: firestore.FieldValue.serverTimestamp()
-    })
-    };
+    const doc =  firestore().collection('drivers').doc(currentDriverId).get().then
+    (function(doc) {
+      if (doc.data().active===true) {
+          console.log("Rider is:", doc.data().active);
+          firestore().collection('drivers').doc(currentDriverId).collection('trips').add({
+            location: new firestore.GeoPoint(lat, long),
+            createdAt: firestore.FieldValue.serverTimestamp()
+          })
+          firestore().collection('drivers').doc(currentDriverId).update({
+            location: new firestore.GeoPoint(lat, long),
+            updatedAt: firestore.FieldValue.serverTimestamp()
+          })
+    }
+  });
+  };
     return () => { isMounted = false }
     }, [position]) 
 
@@ -151,58 +158,55 @@ const HomeMap = (props) => {
           text: "Cancel",
           onPress: () => navigation.navigate('Home'),
         },
-        { text: "Raid", onPress: () => navigation.navigate('ReportRaid')},
+        { text: "Control", onPress: () => navigation.navigate('ReportControl')},
         {
           text: "Accident",
           onPress: () =>  navigation.navigate('ReportAccident'),
         },
       ]
     );        
-  
-    function renderRandomMarkers(n) {
-      const { latitude, longitude, latitudeDelta, longitudeDelta } = initialRegion;
-      return new Array(n).fill().map((x, i) => (
-        <Marker
-          key={i}
-          coordinate={{
-            latitude: latitude + (Math.random() - 0.5) * latitudeDelta,
-            longitude: longitude + (Math.random() - 0.5) * longitudeDelta
-          }}
-        />
-      ));
-    }
 
     const initialRegion= {
         latitude: position?.coords.latitude || 51.455088,
         longitude: position?.coords.longitude ||-0.039669,
-        latitudeDelta: 0.04,
-        longitudeDelta: 0.04,
+        latitudeDelta: 0.09,
+        longitudeDelta: 0.09,
     };
-  
-    const [trips, setTrips] = useState ([]);
+
+
+    const [currentLoc, setCurrentLoc] = useState ([]);
 
     useEffect(() => {
       const response= firestore()
       .collection("drivers")
       .where('active',"==",true)
       .onSnapshot(docs => {
-      let trips = []
+      let currentLoc = []
       docs.forEach(doc => {
-        trips.push(doc.data())
+        currentLoc.push(doc.data())
       })
-      setTrips (trips)
-      console.log (trips)
+      setCurrentLoc (currentLoc)
       })
     },[position])
 
-    const fetchTrips = () => {
-      return trips.map ((trip,index) => (
+   // useEffect(() => {
+   //   const info = firestore().collection('drivers').doc(currentDriverId).get()
+  // },[position])
+
+    const fetchLocation = () => {
+      return currentLoc.map ((loc,index) => (
         <Marker
-         key={trip.id}
-         coordinate={{ latitude : trip.location.latitude, longitude : trip.location.longitude }}>
+         key={loc.id}
+         coordinate={{ latitude : loc.location.latitude, longitude : loc.location.longitude }}>
+        <Image
+          style={{width: 35, height: 35, resizeMode:'contain'}}
+          source={require('../../assets/images/empty_marker.png')}
+        />
+
       </Marker>
         ))
     }
+   
     
 
   return (
@@ -211,11 +215,20 @@ const HomeMap = (props) => {
         provider={PROVIDER_GOOGLE}
         style={styles.map}
         showsUserLocation={true}
-        radius="50"
+        radius="70"
         clusterColor='#fa706e'
-      region={initialRegion}    >
+        initialRegion={initialRegion} 
+        >
     {getMarkers()}
-    
+    <Marker
+         coordinate={{ latitude : position?.coords.latitude || 51.455088, longitude :  position?.coords.longitude ||-0.039669  }}
+         cluster={false}
+         >
+        <Image
+          style={{width: 38, height: 38, resizeMode:'contain'}}
+          source={require('../../assets/images/bike_red.png')}
+        />
+      </Marker>
     </MapView>
     <View style={styles.filtercontainer}>
     <View style={{ flexDirection: "row", alignSelf: "center" }}>
@@ -232,7 +245,7 @@ const HomeMap = (props) => {
           currentCategory={currentCategory}
           onCategoryClick={props.category}/>
       <HeaderButton
-          text="Raids"
+          text="Controls"
           btnColor="white"
           textColor="black"
           currentCategory={currentCategory}

@@ -2,20 +2,21 @@ import React from "react";
 import {View, Dimensions, Image, Text, StyleSheet} from "react-native";
 import {hasPermission} from '../../Hooks/LocationPermission';
 
-import RaidMap from '../../components/RaidMap';
+import ControlMap from '../../components/ControlMap';
 import Header from '../../components/Header';
-import Companies from '../../components/Companies';
 import NavBar from '../../components/NavBar';
+import Message from '../../components/Message';
 
-const ReportRaid = (props) => {
+
+const ReportControl = (props) => {
     return (
         <View>
             <Header/>
-            <Companies/>
-            <RaidMap />
+            <Message/>
+            <ControlMap />
             <NavBar/>
         </View>
     );
 };
 
-export default ReportRaid;
+export default ReportControl;

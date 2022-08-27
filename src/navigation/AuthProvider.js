@@ -35,6 +35,7 @@ export const AuthProvider = ({children}) => {
                   email: email,
                   createdAt: firestore.Timestamp.fromDate(new Date()),
                   active: false,
+                  location: new firestore.GeoPoint(51.474325, 0.0343367) 
               })
               //ensure we catch any errors at this stage to advise us if something does go wrong
               .catch(error => {

@@ -38,10 +38,6 @@ const NavBar = (props) => {
             <MaterialIcons name={"payments"} size={25} color="black" />
                 <Text style={styles.title}> MyPay</Text>
             </Pressable>
-            <Pressable onPress={goToProfile} style={styles.button}>
-            <AntDesign name={"user"} size={25} color="black" />
-                <Text style={styles.title}> Profile </Text>
-            </Pressable>
         </View>
     );
 };

@@ -1,20 +1,42 @@
 import React from "react";
-import {View, Text, Image} from "react-native";
+import {View, Text, Image, Pressable} from "react-native";
+import {windowHeight, windowWidth} from '../../utils/Dimensions';
+import {useNavigation} from '@react-navigation/native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
-/*import AntDesign from "react-native-vector-icons/AntDesign*/
-/*import MaterialIcons from "react-native-vector-icons/MaterialIcons*/
-/*import Entypo from "react-native-vector-icons/Entypo*/
 
 import styles from './styles.js';
 
 const Header = (props) => {
+    const navigation = useNavigation();
+
+    const goToProfile = () =>{
+        navigation.navigate('Profile')
+    }
+
+    const goToAbout = () =>{
+        navigation.navigate('About')
+    }
+
+    const goToHome = () =>{
+        navigation.navigate('Home')
+    } 
+
     return (
             <View style={styles.inputBox}> 
-            <Image
-                style={{width: 110, height: 80, resizeMode:'contain'}}
-                source={require('../../assets/images/logo.png')}
-            />
+            <Pressable onPress={goToProfile} style={styles.buttonProfile} >
+            <Ionicons name={"person-circle-outline"} size={25} color="black" />
+            </Pressable>
+            <Pressable onPress={goToHome} style={styles.buttonProfile} >
+            <Image style={{width: 80, height: 90, resizeMode:'contain', left: windowWidth/500}}
+                source={require('../../assets/images/logo.png')}            />            
+            </Pressable>
+            <Pressable onPress={goToProfile} style={styles.buttonAbout} >
+            <AntDesign name={"questioncircleo"} size={25} color="black" />
+            </Pressable>
             </View>
+
     );
 };
 

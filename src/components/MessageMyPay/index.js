@@ -1,5 +1,16 @@
-import {StyleSheet} from 'react-native';
+import React from "react";
+import {View, Text, StyleSheet} from "react-native";
 import {windowHeight, windowWidth} from '../../utils/Dimensions';
+
+const MessageMyPay = (props) => {
+    return (
+        <View style={styles.inputBox}>
+        <View style={styles.container}>
+            <Text style={styles.title}> Input revenue and costs of workday </Text>
+        </View>
+        </View>
+    );
+};
 
 const styles = StyleSheet.create ({
     container : {
@@ -9,11 +20,11 @@ const styles = StyleSheet.create ({
         borderBottomLeftRadius: 10,
         borderBottomRightRadius:10,
         backgroundColor: "white",
-        width: 250,
+        width: windowWidth/1.2,
         flexDirection: "row",
         justifyContent: "center",
         alignItems: "center",
-        left: windowWidth/6,
+        left: windowWidth/12,
         elevation: 2,
     },
     inputBox : {
@@ -36,5 +47,4 @@ const styles = StyleSheet.create ({
     },
 });
 
-export default styles;
- 
+export default MessageMyPay;

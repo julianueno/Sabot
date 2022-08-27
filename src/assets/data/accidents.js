@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useState, useRef} from "react";
 import {View, Dimensions, Text, TextInput, Image} from "react-native";
 import firestore from "@react-native-firebase/firestore"
 
@@ -11,7 +11,7 @@ class AccidentsData extends Component {
         }
     constructor (props) {
         super (props);
-        this.subscriber = 
+        this.subscriber =
         firestore()
         .collection("accidents")
         .onSnapshot(docs => {

@@ -32,8 +32,9 @@ const styles = StyleSheet.create ({
         width: 80,
         height: 80,
         backgroundColor: "#fa706e",
-        top: "70%",
+        top: "80%",
         borderRadius: 80,
+        elevation: 10,
       },
       message : {
         padding: 10,

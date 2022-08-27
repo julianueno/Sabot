@@ -86,7 +86,8 @@ const styles = StyleSheet.create ({
         borderBottomLeftRadius: 15,
         borderBottomRightRadius: 15,
         width: 115,
-        height: 26
+        height: 26,
+        elevation: 10,
       },
       title: {
         fontFamily: 'Lexend',
@@ -106,8 +107,10 @@ const styles = StyleSheet.create ({
         width: 80,
         height: 80,
         backgroundColor: "#fa706e",
-        top: "70%",
+        top: "75%",
         borderRadius: 80,
+        elevation: 10,
+
       },
       containermessage : {
         padding: 10,
