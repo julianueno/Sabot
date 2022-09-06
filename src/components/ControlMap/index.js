@@ -82,20 +82,21 @@ const ControlMap = (props) => {
             text: "Cancel",
             onPress: () => navigation.navigate('Home'),
           },
-          { text: "OK", onPress:() => addRaid ()},
+          { text: "OK", onPress:() => addControl ()},
         ]
       );
 
-      const addRaid = async () => {
+      const addControl = async () => {
         const lat = pin.latitude
         const long = pin.longitude
-        const docRef = await firestore().collection('raids').add({
+        const docRef = await firestore().collection('controls').add({
           location: new firestore.GeoPoint(lat, long),
           timestamp: firestore.FieldValue.serverTimestamp()
         })
-        firestore().collection('raids').doc(docRef.id).update({
+        firestore().collection('controls').doc(docRef.id).update({
         id: docRef.id
         })
+        navigation.navigate('Home')
       }        
 
     return (

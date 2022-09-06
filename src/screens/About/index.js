@@ -8,17 +8,17 @@ import firestore from "@react-native-firebase/firestore"
 import AccidentMap from '../../components/AccidentMap';
 import Header from '../../components/Header';
 import NavBar from '../../components/NavBar';
-import ProfileInfo from '../../components/ProfileInfo';
+import AboutInfo from '../../components/AboutInfo';
 
-const Profile = (props) => {
+const About = (props) => {
     return (
         <View>
             <Header/>
-            <ProfileInfo/>
+            <AboutInfo/>
             <NavBar/>
         </View>
            
     );
 };
 
-export default Profile;
+export default About;

@@ -11,60 +11,43 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 
-const ProfileInfo = (props) => {
-    const {user, logout} = useContext(AuthContext);
-
-    const driver = firestore().collection("drivers").doc(auth().currentUser.uid).get().then(documentSnapshot => {
-        console.log('User exists: ', documentSnapshot.exists);
-    
-        if (documentSnapshot.exists) {
-          console.log('User data: ', documentSnapshot.data());
-        }
-      });
+const AboutInfo = (props) => {
 
     return (
         <View style={styles.bigcontainer}>
         <View style={styles.container}>
         <View style={styles.inputBoxToday}>
-        <FontAwesome5 name={"user-circle"} size={20}/>
         <TouchableOpacity onPress={() => {}}>
-        <Text style={styles.title}>   Example rider name </Text>
+        <Text style={styles.title}>   What is Sabot? </Text>
         </TouchableOpacity>
         </View>
         </View>
         <View style={styles.container}>
         <View style={styles.inputBoxToday}>
-        <MaterialIcons name={"delivery-dining"} size={20}/>
         <TouchableOpacity onPress={() => {}}>
-        <Text style={styles.title}>   Example vehicle rider </Text>
+        <Text style={styles.title}>   Who made this app?</Text>
         </TouchableOpacity>
         </View>
         </View>
         <View style={styles.container}>
         <View style={styles.inputBoxToday}>
-        <Entypo name={"shareable"} size={20}/>
         <TouchableOpacity onPress={() => {}}>
-        <Text style={styles.title}>   Example company riding for </Text>
+        <Text style={styles.title}> What will you do with my data?  </Text>
         </TouchableOpacity>
         </View>
         </View>
         <View style={styles.container}>
         <View style={styles.inputBoxToday}>
-        <Entypo name={"email"} size={20}/>
         <TouchableOpacity onPress={() => {}}>
-        <Text style={styles.title}>   Example email rider </Text>
+        <Text style={styles.title}> How does this app improve my workday?</Text>
         </TouchableOpacity>
         </View>
         </View>
-        <TouchableOpacity style={styles.buttonForms} onPress={() => logout()}>
-        <MaterialIcons name={"logout"} size={20} color={"white"}/>
-        <Text style={styles.titleButton}>Logout </Text>
-        </TouchableOpacity>
         </View>
     );
 };
 
-export default ProfileInfo;
+export default AboutInfo;
 
 
 const styles = StyleSheet.create ({

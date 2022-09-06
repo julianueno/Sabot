@@ -9,7 +9,8 @@ import ReportControl from "../screens/ReportControl";
 import Profile from "../screens/Profile";
 import About from "../screens/About";
 import NewMyPay from "../screens/NewMyPay";
-
+import NewRestaurant from "../screens/NewRestaurant";
+import RestaurantProfile from "../screens/RestaurantProfile";
 
 import {createStackNavigator} from "@react-navigation/stack"
 
@@ -30,6 +31,9 @@ const RootNavigator = (props) => {
         <Stack.Screen name={"Profile"} component={Profile}/>
         <Stack.Screen name={"About"} component={About}/>
         <Stack.Screen name={"NewMyPay"} component={NewMyPay}/>
+        <Stack.Screen name={"NewRestaurant"} component={NewRestaurant}/>
+        <Stack.Screen name={"RestaurantProfile"} component={RestaurantProfile}/>
+
 
       </Stack.Navigator>
   )

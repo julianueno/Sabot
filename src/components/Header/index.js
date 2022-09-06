@@ -32,7 +32,7 @@ const Header = (props) => {
             <Image style={{width: 80, height: 90, resizeMode:'contain', left: windowWidth/500}}
                 source={require('../../assets/images/logo.png')}            />            
             </Pressable>
-            <Pressable onPress={goToProfile} style={styles.buttonAbout} >
+            <Pressable onPress={goToAbout} style={styles.buttonAbout} >
             <AntDesign name={"questioncircleo"} size={25} color="black" />
             </Pressable>
             </View>

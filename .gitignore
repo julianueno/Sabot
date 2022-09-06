@@ -60,3 +60,4 @@ android/app/src/main/AndroidManifest.xml
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
+android/app/src/main/AndroidManifest.xml

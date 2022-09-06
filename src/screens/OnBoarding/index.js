@@ -58,19 +58,19 @@ const OnBoarding= ({navigation}) => {
         onDone={() => navigation.navigate("Login")}
         pages={[
           {
-            backgroundColor: '#a6e4d0',
-            title: 'Sabot',
-            subtitle: 'Get the control of your data',
+            backgroundColor: '#fa706e',
+            image: <Image source={require('../../assets/images/logo.png')} style={{ height: 60, width: 140 }}/>,
+            subtitle: 'Regain control over your data to inform your decisions' ,
+        },
+          {
+            backgroundColor: 'white',
+            image: <Image source={require('../../assets/images/logo.png')} style={{ height: 60, width: 140 }}/>,
+            subtitle: 'Connect with other riders',
           },
           {
-            backgroundColor: '#fdeb93',
-            title: 'Sabot',
-            subtitle: 'Navigate the city with all information',
-          },
-          {
-            backgroundColor: '#e9bcbe',
-            title: 'Sabot',
-            subtitle: "Use algorithms to connect",
+            backgroundColor: '#fa706e',
+            image: <Image source={require('../../assets/images/logo.png')} style={{ height: 60, width: 140 }}/>,
+            subtitle: "Ride the algorithm to your advantage",
           },
         ]}
       />

@@ -13,7 +13,7 @@ const styles = StyleSheet.create ({
         width: windowWidth,
         height: windowHeight / 12,
         padding: 5,
-        top: windowHeight/1.15, //for center align
+        top: windowHeight/1.09, //for center align
         alignSelf: 'center', //for align to right
       },
       button: {

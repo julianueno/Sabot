@@ -19,6 +19,12 @@ import auth from '@react-native-firebase/auth';
 import styles from './styles.js';
 import {useNavigation} from '@react-navigation/native';
 
+import Today from '../../components/MyPayCalculations/today';
+import Yesterday from '../../components/MyPayCalculations/yesterday';
+import SevenDays from '../../components/MyPayCalculations/sevendays';
+import ThirtyDays from '../../components/MyPayCalculations/thirtydays';
+import TotalHours from '../../components/MyPayCalculations/totalhours';
+
 
 import {AuthContext} from '../../navigation/AuthProvider';
 
@@ -38,22 +44,14 @@ const MyPay = (props) => {
         <Header/>
         <Space/>
         <View style={styles.container}>
-        <View style={styles.inputBoxToday}>
-        <Text style={styles.title}>Today</Text>
-        <Text style={styles.titleWage}>10.9£/h</Text>
+        <Today/>
+        <Yesterday/>
         </View>
-        <View style={styles.inputBoxToday}>
-        <Text style={styles.title}>Yesterday</Text>
-        <Text style={styles.titleWage}>15.9£/h</Text>
+        <View style={styles.container}>
+        <SevenDays/>
         </View>
-        </View>
-        <View style={styles.inputBoxOld}>
-        <Text style={styles.title}>Last Week</Text>
-        <Text style={styles.titleWage}>293.9£/day</Text>
-        </View>
-        <View style={styles.inputBoxOld}>
-        <Text style={styles.title}>Last Month</Text>
-        <Text style={styles.titleWage}>1229.9£/month</Text>
+        <View style={styles.container}>
+        <ThirtyDays/>
         </View>
         <View style={styles.container}>
         <View style={styles.inputBoxOthers}>
@@ -65,9 +63,8 @@ const MyPay = (props) => {
         <Text style={styles.titleWage}>2968.32£/h</Text>
         </View>
         </View>
-        <View style={styles.inputBoxSpeculative}>
-        <Text style={styles.title}>Speculative value of your data up to today</Text>
-        <Text style={styles.titleWage}> 80 £</Text>
+        <View style={styles.container}>
+        <TotalHours/>
         </View>
         <Pressable onPress={goToNewMyPay} style={styles.buttonForms}>
         <Text style={styles.titleForm}>Add Today</Text>

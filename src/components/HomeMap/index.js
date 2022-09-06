@@ -12,9 +12,6 @@ import auth from '@react-native-firebase/auth';
 import {hasPermission} from '../../hooks/LocationPermission';
 import {windowHeight, windowWidth} from '../../utils/Dimensions';
 
-import RaidsData from '../../assets/data/raids';
-import AccidentsData from '../../assets/data/accidents';
-
 import styles from './styles.js';
 
 const HomeMap = (props) => {
@@ -22,6 +19,9 @@ const HomeMap = (props) => {
   const currentDriverId = auth().currentUser.uid;
   // Ref for interval 
   const interval = useRef(null);
+
+  //for unmounting component
+  const [state, setState] = useState({});
 
   // Initialize navigation hook
   const navigation = useNavigation();
@@ -37,10 +37,10 @@ const HomeMap = (props) => {
   const getMarkers = () => {
     switch (currentCategory) {
       case 'Other Riders': return fetchLocation ();
-      case 'Controls': return <RaidsData/>;
-      case 'Accidents': return  <AccidentsData/>;
-      case 'All': return [<AccidentsData/>, <RaidsData/>, fetchLocation () ];
-      default: return [<AccidentsData/>, <RaidsData/>, fetchLocation ()];
+      case 'Controls': return ControlsData();
+      case 'Accidents': return  AccidentsData();
+      case 'All': return [AccidentsData(), ControlsData(), fetchLocation () ];
+      default: return [AccidentsData(), ControlsData(), fetchLocation ()];
     }
   } ;
 
@@ -187,6 +187,9 @@ const HomeMap = (props) => {
       })
       setCurrentLoc (currentLoc)
       })
+      return () => {
+        setState({}); // This worked for me
+      };
     },[position])
 
    // useEffect(() => {
@@ -196,7 +199,7 @@ const HomeMap = (props) => {
     const fetchLocation = () => {
       return currentLoc.map ((loc,index) => (
         <Marker
-         key={loc.id}
+         key={Math.random()*10000000}
          coordinate={{ latitude : loc.location.latitude, longitude : loc.location.longitude }}>
         <Image
           style={{width: 35, height: 35, resizeMode:'contain'}}
@@ -207,7 +210,75 @@ const HomeMap = (props) => {
         ))
     }
    
-    
+
+      var t = new Date();
+      t.setHours(0,0,0,0); // last midnight
+      const today = firestore.Timestamp.fromDate(t);
+         
+      const [controls, setControls] = useState ([]);
+
+      useEffect(() => {
+       const response =
+          firestore()
+          .collection("controls").where("timestamp",">=",today)
+          .onSnapshot(docs => {
+              let controls = []
+              docs.forEach(doc => {
+                  controls.push(doc.data())
+              })
+              setControls (controls)
+            })
+        return () => {
+              setState({}); // This worked for me
+            };
+        },[position])
+  
+      const ControlsData = () => {
+
+          return controls.map ((control,index) => (
+          <Marker
+           key= {Math.random()*10000000}
+           cluster={false}
+           coordinate={{ latitude : control.location.latitude, longitude : control.location.longitude }}>
+                <Image
+                    style={{width: 35, height: 35, resizeMode:'contain'}}
+                    source={require('../../assets/images/controls.png')}
+                    />
+          </Marker>
+          ))  
+        }
+  
+     const [accidents, setAccidents] = useState ([]);
+
+     useEffect(() => {
+     const response =
+     firestore()
+     .collection("accidents").where("timestamp",">=",today)
+     .onSnapshot(docs => {
+         let accidents = []
+         docs.forEach(doc => {
+             accidents.push(doc.data())
+         })
+         setAccidents (accidents)
+        })
+        return () => {
+          setState({}); // This worked for me
+        };
+      },[position])
+
+      const AccidentsData = () => {
+      return  accidents.map ((accident,index) => (
+     <Marker
+      key= {Math.random()*10000000}
+      cluster={false}
+      coordinate={{ latitude : accident.location.latitude, longitude : accident.location.longitude }}>
+           <Image
+               style={{width: 35, height: 35, resizeMode:'contain'}}
+               source={require('../../assets/images/accident.png')}
+               />
+     </Marker>
+      ))  
+    }
 
   return (
   <View style={{height: windowHeight/1.3}}>

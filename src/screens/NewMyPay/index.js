@@ -24,7 +24,7 @@ import {AuthContext} from '../../navigation/AuthProvider';
 import {useNavigation} from '@react-navigation/native';
 
 
-const MyPay = () => {
+const NewMyPay = () => {
     const [revenue, setRevenue] = useState("0");
     const [costs, setCosts] = useState("0");
     const navigation = useNavigation();
@@ -86,7 +86,7 @@ const MyPay = () => {
     );
   };
   
-  export default MyPay;
+  export default NewMyPay;
   
   const styles = StyleSheet.create({
     container: {

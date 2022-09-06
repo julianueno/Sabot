@@ -1,4 +1,4 @@
-import React, {UseState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef} from "react";
 import {View, Image, Text, Pressable, Dimensions, Alert} from "react-native";
 
 import MapView, {PROVIDER_GOOGLE, Marker, Circle} from 'react-native-maps';
@@ -7,10 +7,15 @@ import {useNavigation} from '@react-navigation/native';
 
 import {hasPermission} from '../../hooks/LocationPermission';
 import firestore from "@react-native-firebase/firestore"
+import FormInput from '../../components/Forms/FormInput';
+
+import {windowHeight, windowWidth} from '../../utils/Dimensions';
+
 
 import styles from './styles.js';
 
-const AccidentMap = (props) => {
+const NewRestaurantMap = (props) => {
+  const [name, setName] = useState("Name");
 
   // Ref for interval 
   const interval = useRef(null);
@@ -74,32 +79,41 @@ const AccidentMap = (props) => {
 
     const SubmitAlert = () =>
     Alert.alert(
-        "Report Accident",
+        "New Restaurants",
         "Are you sure?",
         [
           {
             text: "Cancel",
-            onPress: () => navigation.navigate('Home'),
+            onPress: () => navigation.navigate('Restaurants'),
           },
-          { text: "OK", onPress: () => addAccident ()},
+          { text: "OK", onPress: () => addRestaurant ()},
         ]
     );
 
-    const addAccident = async () => {
+    const addRestaurant = async () => {
         const lat = pin.latitude
         const long = pin.longitude
-        const docRef = await firestore().collection('accidents').add({
+        const docRef = await firestore().collection('restaurants').add({
           location: new firestore.GeoPoint(lat, long),
-          timestamp: firestore.FieldValue.serverTimestamp()
+          timestamp: firestore.FieldValue.serverTimestamp(),
+          name: name
         })
-        firestore().collection('accidents').doc(docRef.id).update({
-        id: docRef.id
+        firestore().collection('restaurants').doc(docRef.id).update({
+            id: docRef.id
         })
-        navigation.navigate('Home')
+        navigation.navigate('Restaurants')
       }    
 
     return (
-    <View style={{height: Dimensions.get('window').height -180}}>
+    <View>
+        <FormInput
+          labelValue={name}
+          onChangeText={(name) => setName(name)}
+          iconType="database"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
+    <View style={{height: windowHeight/1.3}}>
     <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}
@@ -125,7 +139,7 @@ const AccidentMap = (props) => {
         }}>
     <Image
         style={{width: 45, height: 45, resizeMode:'contain'}}
-        source={require('../../assets/images/accident.png')}
+        source={require('../../assets/images/restaurant.png')}
     />
     </Marker> 
     </MapView>
@@ -133,7 +147,8 @@ const AccidentMap = (props) => {
                 <Text style={styles.title}>Submit</Text>
     </Pressable>
     </View>
+    </View>
 );
 };
 
-export default AccidentMap;
+export default NewRestaurantMap;

@@ -1,0 +1,24 @@
+diff --git a/node_modules/react-native-ratings/src/components/Star.tsx b/node_modules/react-native-ratings/src/components/Star.tsx
+index 2fe1a85..d297bcd 100644
+--- a/node_modules/react-native-ratings/src/components/Star.tsx
++++ b/node_modules/react-native-ratings/src/components/Star.tsx
+@@ -78,8 +78,8 @@ const Star: React.FunctionComponent<StarProps> = props => {
+ 
+ Star.defaultProps = {
+   starImage: STAR_IMAGE,
+-  selectedColor: "#f1c40f",
+-  unSelectedColor: "#BDC3C7"
++  selectedColor: "#fa706e",
++  unSelectedColor: "#F2F0F0"
+ };
+ 
+ export default Star;
+diff --git a/node_modules/react-native-ratings/src/images/airbnb-star-selected.png b/node_modules/react-native-ratings/src/images/airbnb-star-selected.png
+index 5f65849..f291660 100644
+Binary files a/node_modules/react-native-ratings/src/images/airbnb-star-selected.png and b/node_modules/react-native-ratings/src/images/airbnb-star-selected.png differ
+diff --git a/node_modules/react-native-ratings/src/images/airbnb-star.png b/node_modules/react-native-ratings/src/images/airbnb-star.png
+index 284da06..3deae44 100644
+Binary files a/node_modules/react-native-ratings/src/images/airbnb-star.png and b/node_modules/react-native-ratings/src/images/airbnb-star.png differ
+diff --git a/node_modules/react-native-ratings/src/images/star.png b/node_modules/react-native-ratings/src/images/star.png
+index 310a923..3deae44 100644
+Binary files a/node_modules/react-native-ratings/src/images/star.png and b/node_modules/react-native-ratings/src/images/star.png differ
