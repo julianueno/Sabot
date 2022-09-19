@@ -82,7 +82,7 @@ const Yesterday = (props) => {
         <View style={styles.inputBoxToday}>
         <Text style={styles.title}>Yesterday</Text>
         <Text style={styles.titleWage}> 
-        {period.length==0? "0":(totalPay/totalTime).toFixed(2)} £/h</Text>
+        {period.length==0? "0":(pay.length==0? "0":(totalPay/totalTime).toFixed(2))} £/h</Text>
         </View>
         </View>
         </View>

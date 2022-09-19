@@ -27,6 +27,8 @@ import TotalHours from '../../components/MyPayCalculations/totalhours';
 
 
 import {AuthContext} from '../../navigation/AuthProvider';
+import {windowHeight, windowWidth} from '../../utils/Dimensions';
+
 
 const MyPay = (props) => {
   const navigation = useNavigation();
@@ -43,6 +45,7 @@ const MyPay = (props) => {
         <View>
         <Header/>
         <Space/>
+        <View style={{height: windowHeight/1.35}}>
         <View style={styles.container}>
         <Today/>
         <Yesterday/>
@@ -69,7 +72,8 @@ const MyPay = (props) => {
         <Pressable onPress={goToNewMyPay} style={styles.buttonForms}>
         <Text style={styles.titleForm}>Add Today</Text>
         </Pressable>
-        <NavBar/>
+        </View>
+        <NavBar/>        
         </View>
     );
   };

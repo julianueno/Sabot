@@ -74,7 +74,7 @@ const Today = (props) => {
         <View>
         <View style={styles.inputBoxToday}>
         <Text style={styles.title}>Today</Text>
-        <Text style={styles.titleWage}> {period.length==0? "0":(totalPay/totalTime).toFixed(2)} £/h</Text>
+        <Text style={styles.titleWage}> {period.length==0? "0":(pay.length==0? "0":(totalPay/totalTime).toFixed(2))} £/h</Text>
         </View>
         </View>
     )

@@ -281,7 +281,7 @@ const HomeMap = (props) => {
     }
 
   return (
-  <View style={{height: windowHeight/1.3}}>
+  <View style={{height: windowHeight/1.35}}>
     <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}

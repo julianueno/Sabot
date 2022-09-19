@@ -62,7 +62,7 @@ const Restaurants = ({navigation}) => {
           <View style={styles.inputBox}>
             <Text style={styles.titleSpace}>  Press on restuarant marker to access comments</Text>
             </View>
-          <View style={{height: windowHeight/1.3}}>
+          <View style={{height: windowHeight/1.35}}>
           <MapView
               provider={PROVIDER_GOOGLE}
               style={styles.map}

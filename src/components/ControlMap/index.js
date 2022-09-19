@@ -8,6 +8,8 @@ import {useNavigation} from '@react-navigation/native';
 import firestore from "@react-native-firebase/firestore"
 
 import {hasPermission} from '../../hooks/LocationPermission';
+import {windowHeight, windowWidth} from '../../utils/Dimensions';
+
 
 import styles from './styles.js';
 
@@ -100,7 +102,7 @@ const ControlMap = (props) => {
       }        
 
     return (
-    <View style={{height: Dimensions.get('window').height -180}}>
+    <View style={{height: windowHeight/1.35}}>
     <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}

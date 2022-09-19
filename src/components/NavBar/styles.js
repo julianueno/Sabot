@@ -9,11 +9,8 @@ const styles = StyleSheet.create ({
         flexDirection: "row",
         justifyContent: 'center',
         alignItems: "center",
-        position: "absolute",
-        width: windowWidth,
-        height: windowHeight / 12,
+        height: windowHeight / 10,
         padding: 5,
-        top: windowHeight/1.09, //for center align
         alignSelf: 'center', //for align to right
       },
       button: {
@@ -23,7 +20,7 @@ const styles = StyleSheet.create ({
         justifyContent: "center",
         alignItems: "center",
         width: windowWidth/ 3,
-        height: windowHeight / 12,
+        height: windowHeight / 10,
         borderTopLeftRadius: 0,
         borderTopRightRadius: 0,
         borderBottomLeftRadius: 0,

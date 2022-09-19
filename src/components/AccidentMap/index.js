@@ -6,7 +6,9 @@ import GeoLocation from "react-native-geolocation-service";
 import {useNavigation} from '@react-navigation/native';
 
 import {hasPermission} from '../../hooks/LocationPermission';
-import firestore from "@react-native-firebase/firestore"
+import firestore from "@react-native-firebase/firestore";
+import {windowHeight, windowWidth} from '../../utils/Dimensions';
+
 
 import styles from './styles.js';
 
@@ -99,7 +101,7 @@ const AccidentMap = (props) => {
       }    
 
     return (
-    <View style={{height: Dimensions.get('window').height -180}}>
+    <View style={{height: windowHeight/1.35}}>
     <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}

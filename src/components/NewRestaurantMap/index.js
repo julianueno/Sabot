@@ -113,7 +113,7 @@ const NewRestaurantMap = (props) => {
           autoCapitalize="none"
           autoCorrect={false}
         />
-    <View style={{height: windowHeight/1.3}}>
+    <View style={{height: windowHeight/1.5}}>
     <MapView
         provider={PROVIDER_GOOGLE}
         style={styles.map}

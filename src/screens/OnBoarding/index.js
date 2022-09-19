@@ -58,16 +58,19 @@ const OnBoarding= ({navigation}) => {
         onDone={() => navigation.navigate("Login")}
         pages={[
           {
+            title: " ",
             backgroundColor: '#fa706e',
             image: <Image source={require('../../assets/images/logo.png')} style={{ height: 60, width: 140 }}/>,
             subtitle: 'Regain control over your data to inform your decisions' ,
         },
           {
+            title: " ",
             backgroundColor: 'white',
             image: <Image source={require('../../assets/images/logo.png')} style={{ height: 60, width: 140 }}/>,
             subtitle: 'Connect with other riders',
           },
           {
+            title: " ",
             backgroundColor: '#fa706e',
             image: <Image source={require('../../assets/images/logo.png')} style={{ height: 60, width: 140 }}/>,
             subtitle: "Ride the algorithm to your advantage",

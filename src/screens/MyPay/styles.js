@@ -75,7 +75,7 @@ const styles = StyleSheet.create ({
     width: 80,
     height: 80,
     backgroundColor: "#fa706e",
-    top: windowHeight/1.37,
+    top: windowHeight/1.7,
     borderRadius: 80,
     elevation: 10,
   },

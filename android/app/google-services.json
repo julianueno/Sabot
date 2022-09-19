@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "930512440608",
+    "firebase_url": "https://sabot-343da-default-rtdb.firebaseio.com",
     "project_id": "sabot-343da",
     "storage_bucket": "sabot-343da.appspot.com"
   },
@@ -28,7 +29,7 @@
       ],
       "api_key": [
         {
-          "current_key": "APIKey"
+          "current_key": "AIzaSyAobJUw9DX6T1NM296JZ-jA_CX2vvnQPEU"
         }
       ],
       "services": {
