@@ -37,4 +37,8 @@ the file in the repository: GoogleMaps APIKey in: Sabot\android\app\src\main\And
 ### Database
 The database to store and fetch data from the app has been built with Firebase, a GoogleCloud service that allows to create real-time databases. The structure to organize the information is shown in the following page. The database, unlike the code, is not public since it contains the data from riders, which should only be released to their disclosure. If the reader wanted to build her own database to work with this app, it would be necessary to obtain an APIKey from GoogleCloud Firebase and download the according json file to set up in the app. 
 
+### APP
+You can download the app for Android here: https://drive.google.com/drive/folders/1YQTN0PJXtGXX72EGvuhWa8lJkqSm2JW4
 
+### CODE
+You can download the code's explanation guide here: https://drive.google.com/file/d/1eWCXGvg22HyjtOuK_nc8UbfozL0qZ_jE/view?usp=sharing
