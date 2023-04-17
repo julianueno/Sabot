@@ -28,7 +28,7 @@ Inverting the agent of evaluation, riders can evaluate restaurants on the basis 
 By crossing data from payment invoice with geolocation, it is possible to fi nd out hourly pay for workers (information not currently given by apps), so they can track changes on the algorithm paying scheme. Th is page also calculates hourly rates subtracting costs of maintenance of vehicle. According to the number of deliveries performed, it displays an speculative value for all the data that drivers have produced while working. Data is an unaccounted source of income to platforms, by which they optimise algorithms and attract investment. 
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/102227606/232465156-e04637c7-53fb-469f-b9af-888de91eaa84.png" width=30% height=30% right=150>
+<img src="https://user-images.githubusercontent.com/102227606/232465524-d5981628-c396-4419-b933-9816978a673c.png" width=30% height=30% right=150>
 </p>
 
 ### Software
