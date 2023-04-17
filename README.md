@@ -28,8 +28,11 @@ Inverting the agent of evaluation, riders can evaluate restaurants on the basis 
 By crossing data from payment invoice with geolocation, it is possible to fi nd out hourly pay for workers (information not currently given by apps), so they can track changes on the algorithm paying scheme. Th is page also calculates hourly rates subtracting costs of maintenance of vehicle. According to the number of deliveries performed, it displays an speculative value for all the data that drivers have produced while working. Data is an unaccounted source of income to platforms, by which they optimise algorithms and attract investment. 
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/102227606/193307676-c9e435f6-13c2-467e-9dd7-ff0c6b7785a6.png" width=30% height=30% right=150>
+<img src="https://user-images.githubusercontent.com/102227606/232465156-e04637c7-53fb-469f-b9af-888de91eaa84.png" width=30% height=30% right=150>
 </p>
+
+![image](https://user-images.githubusercontent.com/102227606/232465156-e04637c7-53fb-469f-b9af-888de91eaa84.png)
+
 
 ### Software
 The app has been built using React Native, a javascript library popular among coders to create user interfaces and apps for Android and IOS. Before starting this project, I had a very basic understanding of code. So parallel to the research project, I started the project of learning a new language: javascript. In order to modify the code of the app as a developper it will be necessary to download it from the github repository and obtain an APIKey from GoogleMaps service and add it to
