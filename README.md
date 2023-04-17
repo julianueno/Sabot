@@ -19,8 +19,9 @@ With the same outline, a feature the app has a feature for reporting accidents. 
 Inverting the agent of evaluation, riders can evaluate restaurants on the basis of the treatment given to them when picking up orders. They can add comments to guide other riders on specificities of each restaurant.
 
 <p align="center">
-<img src="https://user-images.githubusercontent.com/102227606/193307289-d4becad9-ee23-48d1-b316-777b859913a5.png" width=30% height=30% right=150>
+<img src="https://user-images.githubusercontent.com/102227606/232464173-14d3b854-358d-4544-a194-9ace38c688d7.png" width=30% height=30% right=150>
 </p>
+
 
 ### MyPay
 
