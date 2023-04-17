@@ -31,9 +31,6 @@ By crossing data from payment invoice with geolocation, it is possible to fi nd 
 <img src="https://user-images.githubusercontent.com/102227606/232465156-e04637c7-53fb-469f-b9af-888de91eaa84.png" width=30% height=30% right=150>
 </p>
 
-![image](https://user-images.githubusercontent.com/102227606/232465156-e04637c7-53fb-469f-b9af-888de91eaa84.png)
-
-
 ### Software
 The app has been built using React Native, a javascript library popular among coders to create user interfaces and apps for Android and IOS. Before starting this project, I had a very basic understanding of code. So parallel to the research project, I started the project of learning a new language: javascript. In order to modify the code of the app as a developper it will be necessary to download it from the github repository and obtain an APIKey from GoogleMaps service and add it to
 the file in the repository: GoogleMaps APIKey in: Sabot\android\app\src\main\AndroidManifest.xml
