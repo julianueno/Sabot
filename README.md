@@ -1,5 +1,10 @@
 # Sabot
-Sabot is an app for delivery drivers conceived to subvert the information asymmetry between worker and algorithm. It has been designed in conversation with London delivery riders. A series of features improve the conditions on the road for drivers and repurpose data collection. Instead of data being used to individualise performance and feed the optimisation of the platform’s algorithm, sabot proposes to use data to build on workers’ leverage, to improve working conditions and driver’s capacity to organize.
+Sabot is an app for delivery drivers in the gig economy aimed at improving their working conditions. It repurposes data collection to inform riders' decisions, creates a community of care as they are on the road, and generates greater capacity to collectively organise. Sabot - coming from the French sabotage - is an idea that emerged when organising with delivery workers in South London, who faced the problem of an inaccurate navigation system in delivery platforms. Along with riders and some members International Workers of Great Britain (IWGB), we started thinking if, and how, a riders’ app could be helpful to organise. 
+
+A prototype was developed in conversation with riders in 2022, who defined its features, experimenting and questioning new forms of political organisation under datafied and distributed workspaces. A riders’ app creates a real-time collective repository that can inform decisions, break up riders’ isolation, and contest the mechanisms of value extraction enabled by platform economy. 
+
+A riders’ app can assist in assembling evidence for strategic litigations and contribute to IWGB’s action roadmap. The proposal goes beyond the demand of transparency to platform companies, understanding that to reshape a system it is necessary to engage with it.
+
 
 ## Features
 ### OnRoad
