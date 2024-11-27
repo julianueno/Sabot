@@ -3,8 +3,7 @@ Sabot is an app for delivery drivers in the gig economy aimed at responding to i
 
 A prototype was developed in conversation with riders in 2022, who defined its features, experimenting and questioning new forms of political organisation under datafied and distributed workspaces. A riders’ app creates a real-time collective repository that can inform decisions, break up riders’ isolation, and contest the mechanisms of value extraction enabled by platform economy. 
 
-A riders’ app can assist in assembling evidence for strategic litigations and contribute to IWGB’s action roadmap. The proposal goes beyond the demand of transparency to platform companies, understanding that to reshape a system it is necessary to engage with it.
-
+Critiquing the techno-solutionism of contemporary AI that prioritises optimisation and efficiency over equity and justice, this app calls for political engagement with the social relations that underpin automated management. This requires not only a critique of the epistemic foundations of AI, but also an active effort to design alternative forms of technology rooted in collective autonomy, dismantling and reimagining the social and political structures from which it emerges.
 
 ## Features
 ### OnRoad
