@@ -41,7 +41,7 @@ buck-out/
 \.buckd/
 *.keystore
 !debug.keystore
-android/app/src/main/AndroidManifest.xml
+
 
 # fastlane
 #
@@ -60,4 +60,11 @@ android/app/src/main/AndroidManifest.xml
 # Ruby / CocoaPods
 /ios/Pods/
 /vendor/bundle/
-android/app/src/main/AndroidManifest.xml
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Firebase config
+android/app/google-services.json
+ios/GoogleService-Info.plist

@@ -5,7 +5,7 @@ import Signup from '../screens/Signup';
 import Login from '../screens/Login';
 import OnBoarding from '../screens/OnBoarding';
 
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
